@@ -1,4 +1,3 @@
-from msilib.schema import TypeLib
 from django.db import models
 from django.contrib.auth.models import User
 
