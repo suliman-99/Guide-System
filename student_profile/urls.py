@@ -2,11 +2,11 @@ from rest_framework.routers import DefaultRouter
 from .views import *
 
 router = DefaultRouter()
-router.register('profile', ProfileViewSet)
-router.register('contact', ContactViewSet)
-router.register('mark', MarkViewSet)
-router.register('experience', ExperienceViewSet)
-router.register('project', ProjectViewSet)
-router.register('membership', MembershipViewSet)
+router.register('profiles', ProfileViewSet, basename='profile')
+router.register('contacts', ContactViewSet, basename='contact')
+router.register('marks', MarkViewSet, basename='mark')
+router.register('experiences', ExperienceViewSet, basename='experience')
+router.register('projects', ProjectViewSet, basename='project')
+router.register('memberships', MembershipViewSet, basename='membership')
 
 urlpatterns = router.urls
