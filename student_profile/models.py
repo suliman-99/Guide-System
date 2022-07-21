@@ -16,7 +16,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     points = models.PositiveBigIntegerField()
-    photo = models.ImageField(null=True)
+    photo = models.ImageField(null=True, upload_to='photos')
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
