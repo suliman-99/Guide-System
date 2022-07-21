@@ -29,6 +29,13 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    'localhost',
+    '192.168.1.7'
+]
+
+INTERNAL_IPS = [
+    'localhost',
+    '127.0.0.1',
     '192.168.1.7'
 ]
 
@@ -72,9 +79,6 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-INTERNAL_IPS = [
-    '127.0.0.1'
-]
 
 ROOT_URLCONF = 'core.urls'
 
