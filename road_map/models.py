@@ -23,7 +23,6 @@ class Page(models.Model):
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
 
-    students = models.ManyToManyField(User, through='FinishedPage')
     dependencies = models.ManyToManyField(
         'Page', related_name='related_dependencies')
     references = models.ManyToManyField(

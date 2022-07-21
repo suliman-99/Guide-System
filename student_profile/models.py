@@ -13,7 +13,6 @@ class Profile(models.Model):
 
     user = models.OneToOneField(
         User, primary_key=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     points = models.PositiveBigIntegerField()
     photo = models.ImageField(null=True)
@@ -42,7 +41,7 @@ class Mark(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     subject_name = models.CharField(max_length=255)
     mark = models.PositiveIntegerField()
-    data = models.DateField()
+    date = models.DateField()
 
     def __str__(self):
         return f'{self.subject_name} : {self.mark}'
@@ -69,7 +68,7 @@ class Project(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True)
     members = models.ManyToManyField(
-        Profile, through='Membership', verbose_name='members')
+        Profile, through='Membership', related_name='projects')
 
     def __str__(self):
         return self.title
