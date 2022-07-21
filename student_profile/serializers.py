@@ -2,23 +2,16 @@ from rest_framework import serializers
 from .models import *
 
 
-class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Profile
-        fields = '__all__'
-
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contact
         fields = '__all__'
 
-
 class MarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mark
         fields = '__all__'
-
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,3 +29,14 @@ class MembershipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
         fields = '__all__'
+
+class ProfileSerializer(serializers.ModelSerializer):
+    contacts = ContactSerializer(many= True, read_only=True)
+    marks = MarkSerializer(many= True, read_only=True)
+    experiences = ExperienceSerializer(many= True, read_only=True)
+    projects = ProjectSerializer(many= True, read_only=True)
+    memberships = MembershipSerializer(many= True, read_only=True)
+    class Meta:
+        model = Profile
+        fields = '__all__'
+

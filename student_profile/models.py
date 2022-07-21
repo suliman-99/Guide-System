@@ -30,7 +30,8 @@ class Profile(models.Model):
 
 
 class Contact(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='contacts')
     type = models.CharField(max_length=255)
     link = models.URLField(max_length=255)
 
@@ -39,7 +40,8 @@ class Contact(models.Model):
 
 
 class Mark(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='marks')
     subject_name = models.CharField(max_length=255)
     mark = models.PositiveIntegerField()
     data = models.DateField()
@@ -49,7 +51,8 @@ class Mark(models.Model):
 
 
 class Experience(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='experiences')
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     description = models.TextField()
@@ -69,14 +72,15 @@ class Project(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True)
     members = models.ManyToManyField(
-        Profile, through='Membership', verbose_name='members')
+        Profile, through='Membership', verbose_name='members', related_name='projects')
 
     def __str__(self):
         return self.title
 
 
 class Membership(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='memberships')
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     position = models.CharField(max_length=255)
 

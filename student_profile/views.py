@@ -3,7 +3,12 @@ from .serializers import *
 
 
 class ProfileViewSet(ModelViewSet):
-    queryset = Profile.objects.all()
+    queryset = Profile.objects \
+        .prefetch_related('contacts') \
+        .prefetch_related('marks') \
+        .prefetch_related('experiences') \
+        .prefetch_related('projects') \
+        .prefetch_related('memberships') 
     serializer_class = ProfileSerializer
 
 
