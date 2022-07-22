@@ -28,10 +28,20 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '192.168.1.7'
+]
+
+INTERNAL_IPS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.1.7'
+]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "http://192.168.1.7:3000",
 ]
 
 
@@ -69,9 +79,6 @@ MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
-INTERNAL_IPS = [
-    '127.0.0.1'
-]
 
 ROOT_URLCONF = 'settings.urls'
 
@@ -144,6 +151,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+MEDIA_ROOT = 'media'
+MEDIA_URL = 'media/'
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -158,7 +169,6 @@ REST_FRAMEWORK = {
 
 
 SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=1)
 }
 

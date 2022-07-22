@@ -13,7 +13,6 @@ class ContactSerializer(serializers.ModelSerializer):
         profile_id = self.context['profile_id']
         return Contact.objects.create(profile_id=profile_id, **validated_data)
 
-
 class MarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mark
@@ -22,7 +21,6 @@ class MarkSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         profile_id = self.context['profile_id']
         return Mark.objects.create(profile_id=profile_id, **validated_data)
-
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:

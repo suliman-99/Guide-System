@@ -15,7 +15,7 @@ class Profile(models.Model):
         User, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     points = models.PositiveBigIntegerField()
-    photo = models.ImageField(null=True)
+    photo = models.ImageField(null=True, upload_to='photos')
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
@@ -46,20 +46,23 @@ class Membership(models.Model):
 
 
 class Contact(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='contacts')
     type = models.CharField(max_length=255)
     link = models.URLField(max_length=255)
 
 
 class Mark(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='marks')
     subject_name = models.CharField(max_length=255)
     mark = models.PositiveIntegerField()
     date = models.DateField()
 
 
 class Experience(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='experiences')
     name = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     description = models.TextField()
