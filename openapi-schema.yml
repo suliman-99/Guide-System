@@ -1,0 +1,4182 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /auth/users/:
+    get:
+      operationId: listUsers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    post:
+      operationId: createUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserCreate'
+          description: ''
+      tags:
+      - auth
+  /auth/users/me/:
+    get:
+      operationId: meUser
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    put:
+      operationId: meUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    patch:
+      operationId: meUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    delete:
+      operationId: meUser
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+      - auth
+  /auth/users/{id}/:
+    get:
+      operationId: retrieveUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    put:
+      operationId: updateUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    patch:
+      operationId: partialUpdateUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+      tags:
+      - auth
+    delete:
+      operationId: destroyUser
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this user.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - auth
+  /forum/forum/:
+    get:
+      operationId: listForums
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Forum'
+          description: ''
+      tags:
+      - forum
+    post:
+      operationId: createForum
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Forum'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Forum'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Forum'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forum'
+          description: ''
+      tags:
+      - forum
+  /forum/forum/{id}/:
+    get:
+      operationId: retrieveForum
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this forum.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forum'
+          description: ''
+      tags:
+      - forum
+    put:
+      operationId: updateForum
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this forum.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Forum'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Forum'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Forum'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forum'
+          description: ''
+      tags:
+      - forum
+    patch:
+      operationId: partialUpdateForum
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this forum.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Forum'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Forum'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Forum'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Forum'
+          description: ''
+      tags:
+      - forum
+    delete:
+      operationId: destroyForum
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this forum.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - forum
+  /forum/reply/:
+    get:
+      operationId: listReplys
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reply'
+          description: ''
+      tags:
+      - forum
+    post:
+      operationId: createReply
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reply'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reply'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reply'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reply'
+          description: ''
+      tags:
+      - forum
+  /forum/reply/{id}/:
+    get:
+      operationId: retrieveReply
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this reply.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reply'
+          description: ''
+      tags:
+      - forum
+    put:
+      operationId: updateReply
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this reply.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reply'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reply'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reply'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reply'
+          description: ''
+      tags:
+      - forum
+    patch:
+      operationId: partialUpdateReply
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this reply.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reply'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reply'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reply'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reply'
+          description: ''
+      tags:
+      - forum
+    delete:
+      operationId: destroyReply
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this reply.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - forum
+  /road_map/page/:
+    get:
+      operationId: listPages
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Page'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createPage
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Page'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Page'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+      tags:
+      - road-map
+  /road_map/page/{id}/:
+    get:
+      operationId: retrievePage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updatePage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Page'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Page'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdatePage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Page'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Page'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Page'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyPage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /road_map/page-references-feature/:
+    get:
+      operationId: listPageReferencesFeatures
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageReferencesFeature'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createPageReferencesFeature
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReferencesFeature'
+          description: ''
+      tags:
+      - road-map
+  /road_map/page-references-feature/{id}/:
+    get:
+      operationId: retrievePageReferencesFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page references feature.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReferencesFeature'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updatePageReferencesFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page references feature.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReferencesFeature'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdatePageReferencesFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page references feature.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PageReferencesFeature'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReferencesFeature'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyPageReferencesFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page references feature.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /road_map/page-reference/:
+    get:
+      operationId: listPageReferences
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PageReference'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createPageReference
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReference'
+          description: ''
+      tags:
+      - road-map
+  /road_map/page-reference/{id}/:
+    get:
+      operationId: retrievePageReference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page reference.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReference'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updatePageReference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page reference.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReference'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdatePageReference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page reference.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PageReference'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PageReference'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyPageReference
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this page reference.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /road_map/feature/:
+    get:
+      operationId: listFeatures
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feature'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createFeature
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feature'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+          description: ''
+      tags:
+      - road-map
+  /road_map/feature/{id}/:
+    get:
+      operationId: retrieveFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feature.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updateFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feature.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feature'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdateFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feature.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feature'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feature'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feature'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyFeature
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feature.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /road_map/content/:
+    get:
+      operationId: listContents
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Content'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createContent
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Content'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Content'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+          description: ''
+      tags:
+      - road-map
+  /road_map/content/{id}/:
+    get:
+      operationId: retrieveContent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this content.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updateContent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this content.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Content'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Content'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdateContent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this content.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Content'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Content'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Content'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Content'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyContent
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this content.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /road_map/feedback/:
+    get:
+      operationId: listFeedbacks
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Feedback'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createFeedback
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+      tags:
+      - road-map
+  /road_map/feedback/{id}/:
+    get:
+      operationId: retrieveFeedback
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feedback.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updateFeedback
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feedback.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdateFeedback
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feedback.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feedback'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyFeedback
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this feedback.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /road_map/finished-page/:
+    get:
+      operationId: listFinishedPages
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FinishedPage'
+          description: ''
+      tags:
+      - road-map
+    post:
+      operationId: createFinishedPage
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinishedPage'
+          description: ''
+      tags:
+      - road-map
+  /road_map/finished-page/{id}/:
+    get:
+      operationId: retrieveFinishedPage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this finished page.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinishedPage'
+          description: ''
+      tags:
+      - road-map
+    put:
+      operationId: updateFinishedPage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this finished page.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinishedPage'
+          description: ''
+      tags:
+      - road-map
+    patch:
+      operationId: partialUpdateFinishedPage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this finished page.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/FinishedPage'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinishedPage'
+          description: ''
+      tags:
+      - road-map
+    delete:
+      operationId: destroyFinishedPage
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this finished page.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - road-map
+  /student_profile/profiles/:
+    get:
+      operationId: listProfiles
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Profile'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createProfile
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{user}/:
+    get:
+      operationId: retrieveProfile
+      description: ''
+      parameters:
+      - name: user
+        in: path
+        required: true
+        description: A unique value identifying this profile.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateProfile
+      description: ''
+      parameters:
+      - name: user
+        in: path
+        required: true
+        description: A unique value identifying this profile.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Profile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Profile'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyProfile
+      description: ''
+      parameters:
+      - name: user
+        in: path
+        required: true
+        description: A unique value identifying this profile.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/projects/:
+    get:
+      operationId: listProjects
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createProject
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/projects/{id}/:
+    get:
+      operationId: retrieveProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+      tags:
+      - student-profile
+    put:
+      operationId: updateProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Project'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyProject
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this project.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/memberships/:
+    get:
+      operationId: listProfileMemberships
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProfileMembership'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createProfileMembership
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileMembership'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProfileMembership'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProfileMembership'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileMembership'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/memberships/{id}/:
+    get:
+      operationId: retrieveProfileMembership
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileMembership'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateProfileMembership
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProfileMembership'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProfileMembership'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProfileMembership'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileMembership'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyProfileMembership
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/contacts/:
+    get:
+      operationId: listContacts
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Contact'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createContact
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contact'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/contacts/{id}/:
+    get:
+      operationId: retrieveContact
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+          description: ''
+      tags:
+      - student-profile
+    put:
+      operationId: updateContact
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contact'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateContact
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Contact'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Contact'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contact'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyContact
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/marks/:
+    get:
+      operationId: listMarks
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mark'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createMark
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mark'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mark'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mark'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mark'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/marks/{id}/:
+    get:
+      operationId: retrieveMark
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mark'
+          description: ''
+      tags:
+      - student-profile
+    put:
+      operationId: updateMark
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mark'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mark'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mark'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mark'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateMark
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mark'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Mark'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Mark'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mark'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyMark
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/experiences/:
+    get:
+      operationId: listExperiences
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Experience'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createExperience
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Experience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Experience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Experience'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/profiles/{profile_pk}/experiences/{id}/:
+    get:
+      operationId: retrieveExperience
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+          description: ''
+      tags:
+      - student-profile
+    put:
+      operationId: updateExperience
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Experience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Experience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Experience'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateExperience
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Experience'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Experience'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Experience'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experience'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyExperience
+      description: ''
+      parameters:
+      - name: profile_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/projects/{project_pk}/memberships/:
+    get:
+      operationId: listProjectMemberships
+      description: ''
+      parameters:
+      - name: project_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProjectMembership'
+          description: ''
+      tags:
+      - student-profile
+    post:
+      operationId: createProjectMembership
+      description: ''
+      parameters:
+      - name: project_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectMembership'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectMembership'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectMembership'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectMembership'
+          description: ''
+      tags:
+      - student-profile
+  /student_profile/projects/{project_pk}/memberships/{id}/:
+    get:
+      operationId: retrieveProjectMembership
+      description: ''
+      parameters:
+      - name: project_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectMembership'
+          description: ''
+      tags:
+      - student-profile
+    patch:
+      operationId: partialUpdateProjectMembership
+      description: ''
+      parameters:
+      - name: project_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectMembership'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ProjectMembership'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ProjectMembership'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectMembership'
+          description: ''
+      tags:
+      - student-profile
+    delete:
+      operationId: destroyProjectMembership
+      description: ''
+      parameters:
+      - name: project_pk
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      - name: id
+        in: path
+        required: true
+        description: ''
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - student-profile
+  /tag/tag/:
+    get:
+      operationId: listTags
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+          description: ''
+      tags:
+      - tag
+    post:
+      operationId: createTag
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+      tags:
+      - tag
+  /tag/tag/{id}/:
+    get:
+      operationId: retrieveTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tag.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+      tags:
+      - tag
+    put:
+      operationId: updateTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tag.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+      tags:
+      - tag
+    patch:
+      operationId: partialUpdateTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tag.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Tag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Tag'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          description: ''
+      tags:
+      - tag
+    delete:
+      operationId: destroyTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tag.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - tag
+  /tag/tagged-item/:
+    get:
+      operationId: listTaggedItems
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TaggedItem'
+          description: ''
+      tags:
+      - tag
+    post:
+      operationId: createTaggedItem
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaggedItem'
+          description: ''
+      tags:
+      - tag
+  /tag/tagged-item/{id}/:
+    get:
+      operationId: retrieveTaggedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tagged item.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaggedItem'
+          description: ''
+      tags:
+      - tag
+    put:
+      operationId: updateTaggedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tagged item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaggedItem'
+          description: ''
+      tags:
+      - tag
+    patch:
+      operationId: partialUpdateTaggedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tagged item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TaggedItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaggedItem'
+          description: ''
+      tags:
+      - tag
+    delete:
+      operationId: destroyTaggedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this tagged item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - tag
+  /tag/suggested-tag/:
+    get:
+      operationId: listSuggestedTags
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SuggestedTag'
+          description: ''
+      tags:
+      - tag
+    post:
+      operationId: createSuggestedTag
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestedTag'
+          description: ''
+      tags:
+      - tag
+  /tag/suggested-tag/{id}/:
+    get:
+      operationId: retrieveSuggestedTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this suggested tag.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestedTag'
+          description: ''
+      tags:
+      - tag
+    put:
+      operationId: updateSuggestedTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this suggested tag.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestedTag'
+          description: ''
+      tags:
+      - tag
+    patch:
+      operationId: partialUpdateSuggestedTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this suggested tag.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SuggestedTag'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuggestedTag'
+          description: ''
+      tags:
+      - tag
+    delete:
+      operationId: destroySuggestedTag
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this suggested tag.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - tag
+  /vote/voted-item/:
+    get:
+      operationId: listVotedItems
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VotedItem'
+          description: ''
+      tags:
+      - vote
+    post:
+      operationId: createVotedItem
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VotedItem'
+          description: ''
+      tags:
+      - vote
+  /vote/voted-item/{id}/:
+    get:
+      operationId: retrieveVotedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this voted item.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VotedItem'
+          description: ''
+      tags:
+      - vote
+    put:
+      operationId: updateVotedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this voted item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VotedItem'
+          description: ''
+      tags:
+      - vote
+    patch:
+      operationId: partialUpdateVotedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this voted item.
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/VotedItem'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VotedItem'
+          description: ''
+      tags:
+      - vote
+    delete:
+      operationId: destroyVotedItem
+      description: ''
+      parameters:
+      - name: id
+        in: path
+        required: true
+        description: A unique integer value identifying this voted item.
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+      tags:
+      - vote
+  /auth/users/activation/:
+    post:
+      operationId: activationUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Activation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Activation'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activation'
+          description: ''
+      tags:
+      - auth
+  /auth/users/resend_activation/:
+    post:
+      operationId: resendActivationUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+          description: ''
+      tags:
+      - auth
+  /auth/users/reset_password/:
+    post:
+      operationId: resetPasswordUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+          description: ''
+      tags:
+      - auth
+  /auth/users/reset_password_confirm/:
+    post:
+      operationId: resetPasswordConfirmUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PasswordResetConfirm'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResetConfirm'
+          description: ''
+      tags:
+      - auth
+  /auth/users/reset_username/:
+    post:
+      operationId: resetUsernameUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SendEmailReset'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SendEmailReset'
+          description: ''
+      tags:
+      - auth
+  /auth/users/reset_username_confirm/:
+    post:
+      operationId: resetUsernameConfirmUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UsernameResetConfirm'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UsernameResetConfirm'
+          description: ''
+      tags:
+      - auth
+  /auth/users/set_password/:
+    post:
+      operationId: setPasswordUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetPassword'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetPassword'
+          description: ''
+      tags:
+      - auth
+  /auth/users/set_username/:
+    post:
+      operationId: setUsernameUser
+      description: ''
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/SetUsername'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SetUsername'
+          description: ''
+      tags:
+      - auth
+  /auth/jwt/create/:
+    post:
+      operationId: createTokenObtainPair
+      description: 'Takes a set of user credentials and returns an access and refresh
+        JSON web
+
+        token pair to prove the authentication of those credentials.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+      tags:
+      - auth
+  /auth/jwt/refresh/:
+    post:
+      operationId: createTokenRefresh
+      description: 'Takes a refresh type JSON web token and returns an access type
+        JSON web
+
+        token if the refresh token is valid.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+      tags:
+      - auth
+  /auth/jwt/verify/:
+    post:
+      operationId: createTokenVerify
+      description: 'Takes a token and indicates if it is valid.  This view provides
+        no
+
+        information about a token''s fitness for a particular use.'
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenVerify'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenVerify'
+          description: ''
+      tags:
+      - auth
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          readOnly: true
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+    Forum:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+        is_question:
+          type: boolean
+        is_closed:
+          type: boolean
+        time:
+          type: string
+          format: date-time
+          readOnly: true
+        user:
+          type: integer
+        closed_reply:
+          type: integer
+          nullable: true
+      required:
+      - title
+      - content
+      - is_question
+      - user
+    Reply:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        time:
+          type: string
+          format: date-time
+          readOnly: true
+        user:
+          type: integer
+        forum:
+          type: integer
+      required:
+      - content
+      - user
+      - forum
+    Page:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        type:
+          enum:
+          - L
+          - O
+          - A
+          type: string
+        background:
+          type: string
+          format: binary
+        icon:
+          type: string
+          format: binary
+        view_template:
+          type: string
+          nullable: true
+        importance_and_advantages:
+          type: string
+        advice_and_tools:
+          type: string
+        dependencies:
+          type: array
+          items:
+            type: integer
+        references:
+          type: array
+          items:
+            type: string
+          readOnly: true
+      required:
+      - title
+      - type
+      - background
+      - icon
+      - importance_and_advantages
+      - advice_and_tools
+      - dependencies
+    PageReferencesFeature:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        page:
+          type: integer
+      required:
+      - name
+      - page
+    PageReference:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        index:
+          type: integer
+          maximum: 4294967295
+          format: int64
+          minimum: 0
+        parent_page:
+          type: integer
+        referenced_page:
+          type: integer
+        features:
+          type: array
+          items:
+            type: string
+          readOnly: true
+      required:
+      - index
+      - parent_page
+      - referenced_page
+    Feature:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        value:
+          type: string
+          maxLength: 255
+        page_reference:
+          type: integer
+        page_references_feature:
+          type: integer
+      required:
+      - value
+      - page_reference
+      - page_references_feature
+    Content:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        content:
+          type: string
+        link:
+          type: string
+          format: uri
+          maxLength: 255
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
+            d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\d?)){3}|\\\
+            [[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1\
+            -\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+            -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{1,5})?(?:[/?#][^\\\
+            s]*)?\\z"
+        page:
+          type: integer
+      required:
+      - title
+      - content
+      - link
+      - page
+    Feedback:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        content:
+          type: string
+        page:
+          type: integer
+      required:
+      - content
+      - page
+    FinishedPage:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        student:
+          type: integer
+        page:
+          type: integer
+      required:
+      - student
+      - page
+    Profile:
+      type: object
+      properties:
+        user_id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+        gender:
+          enum:
+          - M
+          - F
+          type: string
+        points:
+          type: integer
+          maximum: 18446744073709551615
+          format: int64
+          minimum: 0
+        photo:
+          type: string
+          format: binary
+          nullable: true
+        address:
+          type: string
+          maxLength: 255
+        services:
+          type: string
+        preferences:
+          type: string
+        birth_date:
+          type: string
+          format: date
+        is_graduated:
+          type: boolean
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+          nullable: true
+        contact_set:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              type:
+                type: string
+                maxLength: 255
+              link:
+                type: string
+                format: uri
+                maxLength: 255
+                pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
+                  d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\\
+                  d?)){3}|\\[[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF\
+                  0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\\
+                  .(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\\
+                  d{1,5})?(?:[/?#][^\\s]*)?\\z"
+            required:
+            - type
+            - link
+          readOnly: true
+        mark_set:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              subject_name:
+                type: string
+                maxLength: 255
+              mark:
+                type: integer
+                maximum: 4294967295
+                format: int64
+                minimum: 0
+              date:
+                type: string
+                format: date
+            required:
+            - subject_name
+            - mark
+            - date
+          readOnly: true
+        experience_set:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              name:
+                type: string
+                maxLength: 255
+              type:
+                type: string
+                maxLength: 255
+              description:
+                type: string
+              start_date:
+                type: string
+                format: date
+              end_date:
+                type: string
+                format: date
+                nullable: true
+              is_certified:
+                type: boolean
+            required:
+            - name
+            - type
+            - description
+            - start_date
+          readOnly: true
+        membership_set:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              position:
+                type: string
+                maxLength: 255
+              project:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  title:
+                    type: string
+                    maxLength: 255
+                  description:
+                    type: string
+                  link:
+                    type: string
+                    format: uri
+                    maxLength: 200
+                    pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
+                      d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\\
+                      d?)){3}|\\[[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF\
+                      0-9-]{0,61}[a-z\xA1-\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\\
+                      .(?!-)(?:[a-z\xA1-\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\\
+                      .?|localhost))(?::\\d{1,5})?(?:[/?#][^\\s]*)?\\z"
+                  is_cerified:
+                    type: boolean
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - title
+                - description
+                - link
+                - start_date
+            required:
+            - position
+            - project
+          readOnly: true
+      required:
+      - username
+      - first_name
+      - last_name
+      - email
+      - gender
+      - points
+      - address
+      - services
+      - preferences
+      - birth_date
+      - start_date
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        link:
+          type: string
+          format: uri
+          maxLength: 200
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
+            d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\d?)){3}|\\\
+            [[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1\
+            -\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+            -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{1,5})?(?:[/?#][^\\\
+            s]*)?\\z"
+        is_cerified:
+          type: boolean
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+          nullable: true
+        membership_set:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+                readOnly: true
+              position:
+                type: string
+                maxLength: 255
+              profile:
+                type: object
+                properties:
+                  user_id:
+                    type: integer
+                    readOnly: true
+                  username:
+                    type: string
+                  first_name:
+                    type: string
+                  last_name:
+                    type: string
+                  email:
+                    type: string
+                  gender:
+                    enum:
+                    - M
+                    - F
+                    type: string
+                  points:
+                    type: integer
+                    maximum: 18446744073709551615
+                    format: int64
+                    minimum: 0
+                  photo:
+                    type: string
+                    format: binary
+                    nullable: true
+                  address:
+                    type: string
+                    maxLength: 255
+                  services:
+                    type: string
+                  preferences:
+                    type: string
+                  birth_date:
+                    type: string
+                    format: date
+                  is_graduated:
+                    type: boolean
+                  start_date:
+                    type: string
+                    format: date
+                  end_date:
+                    type: string
+                    format: date
+                    nullable: true
+                required:
+                - username
+                - first_name
+                - last_name
+                - email
+                - gender
+                - points
+                - address
+                - services
+                - preferences
+                - birth_date
+                - start_date
+            required:
+            - position
+            - profile
+          readOnly: true
+      required:
+      - title
+      - description
+      - link
+      - start_date
+    ProfileMembership:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        position:
+          type: string
+          maxLength: 255
+        project:
+          type: object
+          properties:
+            id:
+              type: integer
+              readOnly: true
+            title:
+              type: string
+              maxLength: 255
+            description:
+              type: string
+            link:
+              type: string
+              format: uri
+              maxLength: 200
+              pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
+                d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\\
+                d?)){3}|\\[[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1\
+                -\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+                -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{1,5})?(?:[/?#][^\\\
+                s]*)?\\z"
+            is_cerified:
+              type: boolean
+            start_date:
+              type: string
+              format: date
+            end_date:
+              type: string
+              format: date
+              nullable: true
+          required:
+          - title
+          - description
+          - link
+          - start_date
+      required:
+      - position
+      - project
+    Contact:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        type:
+          type: string
+          maxLength: 255
+        link:
+          type: string
+          format: uri
+          maxLength: 255
+          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
+            d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\d?)){3}|\\\
+            [[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1\
+            -\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
+            -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{1,5})?(?:[/?#][^\\\
+            s]*)?\\z"
+      required:
+      - type
+      - link
+    Mark:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        subject_name:
+          type: string
+          maxLength: 255
+        mark:
+          type: integer
+          maximum: 4294967295
+          format: int64
+          minimum: 0
+        date:
+          type: string
+          format: date
+      required:
+      - subject_name
+      - mark
+      - date
+    Experience:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        type:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+          nullable: true
+        is_certified:
+          type: boolean
+      required:
+      - name
+      - type
+      - description
+      - start_date
+    ProjectMembership:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        position:
+          type: string
+          maxLength: 255
+        profile:
+          type: object
+          properties:
+            user_id:
+              type: integer
+              readOnly: true
+            username:
+              type: string
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            gender:
+              enum:
+              - M
+              - F
+              type: string
+            points:
+              type: integer
+              maximum: 18446744073709551615
+              format: int64
+              minimum: 0
+            photo:
+              type: string
+              format: binary
+              nullable: true
+            address:
+              type: string
+              maxLength: 255
+            services:
+              type: string
+            preferences:
+              type: string
+            birth_date:
+              type: string
+              format: date
+            is_graduated:
+              type: boolean
+            start_date:
+              type: string
+              format: date
+            end_date:
+              type: string
+              format: date
+              nullable: true
+          required:
+          - username
+          - first_name
+          - last_name
+          - email
+          - gender
+          - points
+          - address
+          - services
+          - preferences
+          - birth_date
+          - start_date
+      required:
+      - position
+      - profile
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        type:
+          enum:
+          - G
+          - B
+          type: string
+        number_of_uses:
+          type: integer
+          maximum: 4294967295
+          format: int64
+          minimum: 0
+      required:
+      - name
+      - type
+      - number_of_uses
+    TaggedItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        object_id:
+          type: integer
+          maximum: 4294967295
+          format: int64
+          minimum: 0
+        tag:
+          type: integer
+        content_type:
+          type: integer
+      required:
+      - object_id
+      - tag
+      - content_type
+    SuggestedTag:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        object_id:
+          type: integer
+          maximum: 4294967295
+          format: int64
+          minimum: 0
+        is_add:
+          type: boolean
+        tag:
+          type: integer
+        content_type:
+          type: integer
+      required:
+      - object_id
+      - is_add
+      - tag
+      - content_type
+    VotedItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        is_up:
+          type: boolean
+        object_id:
+          type: integer
+          maximum: 4294967295
+          format: int64
+          minimum: 0
+        user:
+          type: integer
+        content_type:
+          type: integer
+      required:
+      - is_up
+      - object_id
+      - user
+      - content_type
+    UserCreate:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+        id:
+          type: integer
+          readOnly: true
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - username
+      - password
+    Activation:
+      type: object
+      properties:
+        uid:
+          type: string
+        token:
+          type: string
+      required:
+      - uid
+      - token
+    SendEmailReset:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+      required:
+      - email
+    PasswordResetConfirm:
+      type: object
+      properties:
+        uid:
+          type: string
+        token:
+          type: string
+        new_password:
+          type: string
+      required:
+      - uid
+      - token
+      - new_password
+    UsernameResetConfirm:
+      type: object
+      properties:
+        new_username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+      required:
+      - new_username
+    SetPassword:
+      type: object
+      properties:
+        new_password:
+          type: string
+        current_password:
+          type: string
+      required:
+      - new_password
+      - current_password
+    SetUsername:
+      type: object
+      properties:
+        current_password:
+          type: string
+        new_username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+\z
+          maxLength: 150
+      required:
+      - current_password
+      - new_username
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+          writeOnly: true
+      required:
+      - username
+      - password
+    TokenRefresh:
+      type: object
+      properties:
+        refresh:
+          type: string
+        access:
+          type: string
+          readOnly: true
+      required:
+      - refresh
+    TokenVerify:
+      type: object
+      properties:
+        token:
+          type: string
+      required:
+      - token
