@@ -3,6 +3,13 @@ from .models import *
 
 
 class ProfileSerializer(serializers.ModelSerializer):
+    # experience_set = serializers.StringRelatedField(many=True)
+    project_set = serializers.StringRelatedField(many=True)
+    experience_set = serializers.SerializerMethodField()
+
+    def get_experience_set(self, experience):
+        return experience.experience_set.values_list('name', flat=True)
+    
     class Meta:
         model = Profile
         fields = '__all__'
@@ -21,9 +28,11 @@ class MarkSerializer(serializers.ModelSerializer):
 
 
 class ExperienceSerializer(serializers.ModelSerializer):
+    owner = serializers.ReadOnlyField(source='owner.username')
+
     class Meta:
         model = Experience
-        fields = '__all__'
+        fields = ['profile', 'name', 'owner', 'is_certified']
 
 
 class ProjectSerializer(serializers.ModelSerializer):

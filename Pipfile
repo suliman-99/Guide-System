@@ -11,7 +11,6 @@ djoser = "*"
 django-cors-headers = "*"
 
 [dev-packages]
-pyyaml = "*"
 uritemplate = "*"
 django-rest-swagger = "*"
 

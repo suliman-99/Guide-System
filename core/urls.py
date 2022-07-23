@@ -15,7 +15,7 @@ Including another URLconf
 """
 import debug_toolbar
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, re_path
 from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
 
@@ -28,8 +28,9 @@ swagger_view = TemplateView.as_view(
 
 
 urlpatterns = [
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.jwt')),
+    re_path(r'^auth/', include('djoser.urls.base')),
+    re_path(r'^auth/', include('djoser.urls.jwt')),
+    re_path(r'^auth/', include('djoser.urls')),
     path('frontend/', include('frontend.urls')),
     path('api_schema/', schema_view, name='api_schema'),
     path('', swagger_view, name='swagger-ui'),
