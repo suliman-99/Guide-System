@@ -75,8 +75,12 @@ class ProjectMembershipViewSet(ModelViewSet):
 
 class ProfileViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
-    queryset = Profile.objects.select_related('user').prefetch_related('contact_set').prefetch_related(
-        'mark_set').prefetch_related('experience_set').prefetch_related('membership_set__project')
+    queryset = Profile.objects \
+        .select_related('user') \
+        .prefetch_related('contacts') \
+        .prefetch_related('marks') \
+        .prefetch_related('experiences') \
+        .prefetch_related('memberships__project')
 
     def get_serializer_context(self):
         if not self.request is None:
@@ -95,5 +99,5 @@ class ProfileViewSet(ModelViewSet):
 
 
 class ProjectViewSet(ModelViewSet):
-    queryset = Project.objects.prefetch_related('membership_set__profile')
+    queryset = Project.objects.prefetch_related('memberships__profile')
     serializer_class = ProjectSerializer

@@ -13,6 +13,7 @@ class ContactSerializer(serializers.ModelSerializer):
         profile_id = self.context['profile_id']
         return Contact.objects.create(profile_id=profile_id, **validated_data)
 
+
 class MarkSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mark
@@ -21,6 +22,7 @@ class MarkSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         profile_id = self.context['profile_id']
         return Mark.objects.create(profile_id=profile_id, **validated_data)
+
 
 class ExperienceSerializer(serializers.ModelSerializer):
     class Meta:
@@ -83,17 +85,17 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user_id', 'username', 'first_name', 'last_name', 'email', 'gender', 'points', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date', 'contact_set', 'mark_set', 'experience_set', 'membership_set']
+                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date', 'contacts', 'marks', 'experiences', 'memberships']
 
     user_id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(source='user.username')
     first_name = serializers.CharField(source='user.first_name')
     last_name = serializers.CharField(source='user.last_name')
     email = serializers.CharField(source='user.email')
-    contact_set = ContactSerializer(many=True, read_only=True)
-    mark_set = MarkSerializer(many=True, read_only=True)
-    experience_set = ExperienceSerializer(many=True, read_only=True)
-    membership_set = ProfileMembershipSerializer(many=True, read_only=True)
+    contacts = ContactSerializer(many=True, read_only=True)
+    marks = MarkSerializer(many=True, read_only=True)
+    experiences = ExperienceSerializer(many=True, read_only=True)
+    memberships = ProfileMembershipSerializer(many=True, read_only=True)
 
 
 class CreateProfileSerializer(serializers.ModelSerializer):
@@ -158,6 +160,6 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ['id', 'title', 'description', 'link',
-                  'is_cerified', 'start_date', 'end_date', 'membership_set']
+                  'is_cerified', 'start_date', 'end_date', 'memberships']
 
-    membership_set = ProjectMembershipSerializer(many=True, read_only=True)
+    memberships = ProjectMembershipSerializer(many=True, read_only=True)

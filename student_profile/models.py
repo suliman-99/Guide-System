@@ -37,8 +37,10 @@ class Project(models.Model):
 
 
 class Membership(models.Model):
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name='memberships')
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name='memberships')
     position = models.CharField(max_length=255)
 
     class Meta:
