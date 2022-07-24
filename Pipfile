@@ -13,6 +13,8 @@ python-decouple = "*"
 django-debug-toolbar = "*"
 mysqlclient = "*"
 pillow = "*"
+drf-nested-routers = "*"
+typing-extensions = "*"
 
 [dev-packages]
 pyyaml = "*"

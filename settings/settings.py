@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'djoser',
+    'config',
     'frontend',
     'debug_toolbar',
     'student_profile',
@@ -165,6 +166,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'config.renderers.CamelCaseRenderer',
+        'config.renderers.BrowsableCamelCaseRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'config.parsers.SnakeCaseParser',
     ]
 }
 
