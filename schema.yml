@@ -28,12 +28,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UserCreate'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/UserCreate'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/UserCreate'
       responses:
         '201':
           content:
@@ -66,12 +60,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/User'
       responses:
         '200':
           content:
@@ -88,12 +76,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/User'
       responses:
@@ -149,12 +131,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/User'
       responses:
         '200':
           content:
@@ -177,12 +153,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/User'
       responses:
@@ -209,11 +179,7 @@ paths:
           description: ''
       tags:
       - auth
-<<<<<<< HEAD
-  /forum/forum/:
-=======
   /api/forum/forums/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listForums
       description: ''
@@ -228,11 +194,7 @@ paths:
                   $ref: '#/components/schemas/Forum'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createForum
       description: ''
@@ -240,12 +202,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Forum'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Forum'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Forum'
       responses:
@@ -256,13 +212,8 @@ paths:
                 $ref: '#/components/schemas/Forum'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-  /forum/forum/{id}/:
-=======
       - api
   /api/forum/forums/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveForum
       description: ''
@@ -281,11 +232,7 @@ paths:
                 $ref: '#/components/schemas/Forum'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateForum
       description: ''
@@ -301,12 +248,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Forum'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Forum'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Forum'
       responses:
         '200':
           content:
@@ -315,11 +256,7 @@ paths:
                 $ref: '#/components/schemas/Forum'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateForum
       description: ''
@@ -335,12 +272,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Forum'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Forum'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Forum'
       responses:
         '200':
           content:
@@ -349,11 +280,7 @@ paths:
                 $ref: '#/components/schemas/Forum'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyForum
       description: ''
@@ -368,13 +295,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-  /forum/reply/:
-=======
       - api
   /api/forum/replies/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listReplys
       description: ''
@@ -389,11 +311,7 @@ paths:
                   $ref: '#/components/schemas/Reply'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createReply
       description: ''
@@ -401,12 +319,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Reply'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Reply'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Reply'
       responses:
@@ -417,13 +329,8 @@ paths:
                 $ref: '#/components/schemas/Reply'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-  /forum/reply/{id}/:
-=======
       - api
   /api/forum/replies/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveReply
       description: ''
@@ -442,11 +349,7 @@ paths:
                 $ref: '#/components/schemas/Reply'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateReply
       description: ''
@@ -462,12 +365,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Reply'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Reply'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Reply'
       responses:
         '200':
           content:
@@ -476,11 +373,7 @@ paths:
                 $ref: '#/components/schemas/Reply'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateReply
       description: ''
@@ -496,12 +389,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Reply'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Reply'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Reply'
       responses:
         '200':
           content:
@@ -510,11 +397,7 @@ paths:
                 $ref: '#/components/schemas/Reply'
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyReply
       description: ''
@@ -529,13 +412,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - forum
-  /road_map/page/:
-=======
       - api
   /api/roadmap/pages/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listPages
       description: ''
@@ -550,11 +428,7 @@ paths:
                   $ref: '#/components/schemas/Page'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createPage
       description: ''
@@ -562,12 +436,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Page'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Page'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Page'
       responses:
@@ -578,13 +446,8 @@ paths:
                 $ref: '#/components/schemas/Page'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/page/{id}/:
-=======
       - api
   /api/roadmap/pages/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrievePage
       description: ''
@@ -603,11 +466,7 @@ paths:
                 $ref: '#/components/schemas/Page'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updatePage
       description: ''
@@ -623,12 +482,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Page'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Page'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Page'
       responses:
         '200':
           content:
@@ -637,11 +490,7 @@ paths:
                 $ref: '#/components/schemas/Page'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdatePage
       description: ''
@@ -657,12 +506,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Page'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Page'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Page'
       responses:
         '200':
           content:
@@ -671,11 +514,7 @@ paths:
                 $ref: '#/components/schemas/Page'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyPage
       description: ''
@@ -690,13 +529,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/page-references-feature/:
-=======
       - api
   /api/roadmap/page-references-features/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listPageReferencesFeatures
       description: ''
@@ -711,11 +545,7 @@ paths:
                   $ref: '#/components/schemas/PageReferencesFeature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createPageReferencesFeature
       description: ''
@@ -723,12 +553,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PageReferencesFeature'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PageReferencesFeature'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PageReferencesFeature'
       responses:
@@ -739,13 +563,8 @@ paths:
                 $ref: '#/components/schemas/PageReferencesFeature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/page-references-feature/{id}/:
-=======
       - api
   /api/roadmap/page-references-features/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrievePageReferencesFeature
       description: ''
@@ -764,11 +583,7 @@ paths:
                 $ref: '#/components/schemas/PageReferencesFeature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updatePageReferencesFeature
       description: ''
@@ -784,12 +599,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PageReferencesFeature'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PageReferencesFeature'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PageReferencesFeature'
       responses:
         '200':
           content:
@@ -798,11 +607,7 @@ paths:
                 $ref: '#/components/schemas/PageReferencesFeature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdatePageReferencesFeature
       description: ''
@@ -818,12 +623,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PageReferencesFeature'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PageReferencesFeature'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PageReferencesFeature'
       responses:
         '200':
           content:
@@ -832,11 +631,7 @@ paths:
                 $ref: '#/components/schemas/PageReferencesFeature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyPageReferencesFeature
       description: ''
@@ -851,13 +646,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/page-reference/:
-=======
       - api
   /api/roadmap/page-references/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listPageReferences
       description: ''
@@ -872,11 +662,7 @@ paths:
                   $ref: '#/components/schemas/PageReference'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createPageReference
       description: ''
@@ -884,12 +670,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/PageReference'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PageReference'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/PageReference'
       responses:
@@ -900,13 +680,8 @@ paths:
                 $ref: '#/components/schemas/PageReference'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/page-reference/{id}/:
-=======
       - api
   /api/roadmap/page-references/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrievePageReference
       description: ''
@@ -925,11 +700,7 @@ paths:
                 $ref: '#/components/schemas/PageReference'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updatePageReference
       description: ''
@@ -945,12 +716,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PageReference'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PageReference'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PageReference'
       responses:
         '200':
           content:
@@ -959,11 +724,7 @@ paths:
                 $ref: '#/components/schemas/PageReference'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdatePageReference
       description: ''
@@ -979,12 +740,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PageReference'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PageReference'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PageReference'
       responses:
         '200':
           content:
@@ -993,11 +748,7 @@ paths:
                 $ref: '#/components/schemas/PageReference'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyPageReference
       description: ''
@@ -1012,13 +763,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/feature/:
-=======
       - api
   /api/roadmap/features/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listFeatures
       description: ''
@@ -1033,11 +779,7 @@ paths:
                   $ref: '#/components/schemas/Feature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createFeature
       description: ''
@@ -1045,12 +787,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Feature'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Feature'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Feature'
       responses:
@@ -1061,13 +797,8 @@ paths:
                 $ref: '#/components/schemas/Feature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/feature/{id}/:
-=======
       - api
   /api/roadmap/features/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveFeature
       description: ''
@@ -1086,11 +817,7 @@ paths:
                 $ref: '#/components/schemas/Feature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateFeature
       description: ''
@@ -1106,12 +833,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Feature'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Feature'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Feature'
       responses:
         '200':
           content:
@@ -1120,11 +841,7 @@ paths:
                 $ref: '#/components/schemas/Feature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateFeature
       description: ''
@@ -1140,12 +857,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Feature'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Feature'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Feature'
       responses:
         '200':
           content:
@@ -1154,11 +865,7 @@ paths:
                 $ref: '#/components/schemas/Feature'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyFeature
       description: ''
@@ -1173,13 +880,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/content/:
-=======
       - api
   /api/roadmap/contents/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listContents
       description: ''
@@ -1194,11 +896,7 @@ paths:
                   $ref: '#/components/schemas/Content'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createContent
       description: ''
@@ -1206,12 +904,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Content'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Content'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Content'
       responses:
@@ -1222,13 +914,8 @@ paths:
                 $ref: '#/components/schemas/Content'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/content/{id}/:
-=======
       - api
   /api/roadmap/contents/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveContent
       description: ''
@@ -1247,11 +934,7 @@ paths:
                 $ref: '#/components/schemas/Content'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateContent
       description: ''
@@ -1267,12 +950,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Content'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Content'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Content'
       responses:
         '200':
           content:
@@ -1281,11 +958,7 @@ paths:
                 $ref: '#/components/schemas/Content'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateContent
       description: ''
@@ -1301,12 +974,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Content'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Content'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Content'
       responses:
         '200':
           content:
@@ -1315,11 +982,7 @@ paths:
                 $ref: '#/components/schemas/Content'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyContent
       description: ''
@@ -1334,13 +997,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/feedback/:
-=======
       - api
   /api/roadmap/feedbacks/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listFeedbacks
       description: ''
@@ -1355,11 +1013,7 @@ paths:
                   $ref: '#/components/schemas/Feedback'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createFeedback
       description: ''
@@ -1367,12 +1021,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Feedback'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Feedback'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Feedback'
       responses:
@@ -1383,13 +1031,8 @@ paths:
                 $ref: '#/components/schemas/Feedback'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/feedback/{id}/:
-=======
       - api
   /api/roadmap/feedbacks/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveFeedback
       description: ''
@@ -1408,11 +1051,7 @@ paths:
                 $ref: '#/components/schemas/Feedback'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateFeedback
       description: ''
@@ -1428,12 +1067,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Feedback'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Feedback'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Feedback'
       responses:
         '200':
           content:
@@ -1442,11 +1075,7 @@ paths:
                 $ref: '#/components/schemas/Feedback'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateFeedback
       description: ''
@@ -1462,12 +1091,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Feedback'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Feedback'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Feedback'
       responses:
         '200':
           content:
@@ -1476,11 +1099,7 @@ paths:
                 $ref: '#/components/schemas/Feedback'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyFeedback
       description: ''
@@ -1495,13 +1114,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/finished-page/:
-=======
       - api
   /api/roadmap/finished-pages/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listFinishedPages
       description: ''
@@ -1516,11 +1130,7 @@ paths:
                   $ref: '#/components/schemas/FinishedPage'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createFinishedPage
       description: ''
@@ -1528,12 +1138,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/FinishedPage'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/FinishedPage'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/FinishedPage'
       responses:
@@ -1544,13 +1148,8 @@ paths:
                 $ref: '#/components/schemas/FinishedPage'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /road_map/finished-page/{id}/:
-=======
       - api
   /api/roadmap/finished-pages/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveFinishedPage
       description: ''
@@ -1569,11 +1168,7 @@ paths:
                 $ref: '#/components/schemas/FinishedPage'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateFinishedPage
       description: ''
@@ -1589,12 +1184,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FinishedPage'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/FinishedPage'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/FinishedPage'
       responses:
         '200':
           content:
@@ -1603,11 +1192,7 @@ paths:
                 $ref: '#/components/schemas/FinishedPage'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateFinishedPage
       description: ''
@@ -1623,12 +1208,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/FinishedPage'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/FinishedPage'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/FinishedPage'
       responses:
         '200':
           content:
@@ -1637,11 +1216,7 @@ paths:
                 $ref: '#/components/schemas/FinishedPage'
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyFinishedPage
       description: ''
@@ -1656,13 +1231,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - road-map
-  /student_profile/profile/:
-=======
       - api
   /api/student-profile/profiles/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listProfiles
       description: ''
@@ -1677,11 +1247,7 @@ paths:
                   $ref: '#/components/schemas/Profile'
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createProfile
       description: ''
@@ -1689,12 +1255,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Profile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Profile'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Profile'
       responses:
@@ -1705,13 +1265,8 @@ paths:
                 $ref: '#/components/schemas/Profile'
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /student_profile/profile/{user}/:
-=======
       - api
   /api/student-profile/profiles/{user}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveProfile
       description: ''
@@ -1730,41 +1285,7 @@ paths:
                 $ref: '#/components/schemas/Profile'
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-    put:
-      operationId: updateProfile
-      description: ''
-      parameters:
-      - name: user
-        in: path
-        required: true
-        description: A unique value identifying this profile.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Profile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Profile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Profile'
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Profile'
-          description: ''
-      tags:
-      - student-profile
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateProfile
       description: ''
@@ -1780,12 +1301,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Profile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Profile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Profile'
       responses:
         '200':
           content:
@@ -1794,11 +1309,7 @@ paths:
                 $ref: '#/components/schemas/Profile'
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyProfile
       description: ''
@@ -1813,17 +1324,30 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /student_profile/contact/:
+      - api
+  /api/student-profile/profiles/{user}/me/:
     get:
-      operationId: listContacts
-=======
+      operationId: meProfile
+      description: ''
+      parameters:
+      - name: user
+        in: path
+        required: true
+        description: A unique value identifying this profile.
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+          description: ''
+      tags:
       - api
   /api/student-profile/projects/:
     get:
       operationId: listProjects
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       description: ''
       parameters: []
       responses:
@@ -1833,58 +1357,24 @@ paths:
               schema:
                 type: array
                 items:
-<<<<<<< HEAD
-                  $ref: '#/components/schemas/Contact'
-          description: ''
-      tags:
-      - student-profile
-    post:
-      operationId: createContact
-=======
                   $ref: '#/components/schemas/Project'
           description: ''
       tags:
       - api
     post:
       operationId: createProject
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       description: ''
       parameters: []
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Contact'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Contact'
-=======
               $ref: '#/components/schemas/Project'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Project'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Project'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '201':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Contact'
-          description: ''
-      tags:
-      - student-profile
-  /student_profile/contact/{id}/:
-    get:
-      operationId: retrieveContact
-=======
                 $ref: '#/components/schemas/Project'
           description: ''
       tags:
@@ -1892,17 +1382,12 @@ paths:
   /api/student-profile/projects/{id}/:
     get:
       operationId: retrieveProject
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       description: ''
       parameters:
       - name: id
         in: path
         required: true
-<<<<<<< HEAD
-        description: A unique integer value identifying this contact.
-=======
         description: A unique integer value identifying this project.
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
@@ -1910,151 +1395,72 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Contact'
-          description: ''
-      tags:
-      - student-profile
-    put:
-      operationId: updateContact
-=======
                 $ref: '#/components/schemas/Project'
           description: ''
       tags:
       - api
     put:
       operationId: updateProject
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       description: ''
       parameters:
       - name: id
         in: path
         required: true
-<<<<<<< HEAD
-        description: A unique integer value identifying this contact.
-=======
         description: A unique integer value identifying this project.
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Contact'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Contact'
-=======
               $ref: '#/components/schemas/Project'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Project'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Project'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Contact'
-          description: ''
-      tags:
-      - student-profile
-    patch:
-      operationId: partialUpdateContact
-=======
                 $ref: '#/components/schemas/Project'
           description: ''
       tags:
       - api
     patch:
       operationId: partialUpdateProject
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       description: ''
       parameters:
       - name: id
         in: path
         required: true
-<<<<<<< HEAD
-        description: A unique integer value identifying this contact.
-=======
         description: A unique integer value identifying this project.
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Contact'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Contact'
-=======
               $ref: '#/components/schemas/Project'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Project'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Project'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Contact'
-          description: ''
-      tags:
-      - student-profile
-    delete:
-      operationId: destroyContact
-=======
                 $ref: '#/components/schemas/Project'
           description: ''
       tags:
       - api
     delete:
       operationId: destroyProject
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       description: ''
       parameters:
       - name: id
         in: path
         required: true
-<<<<<<< HEAD
-        description: A unique integer value identifying this contact.
-=======
         description: A unique integer value identifying this project.
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /student_profile/mark/:
-    get:
-      operationId: listMarks
-      description: ''
-      parameters: []
-=======
       - api
   /api/student-profile/profiles/{profile_pk}/memberships/:
     get:
@@ -2067,7 +1473,6 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
@@ -2075,16 +1480,6 @@ paths:
               schema:
                 type: array
                 items:
-<<<<<<< HEAD
-                  $ref: '#/components/schemas/Mark'
-          description: ''
-      tags:
-      - student-profile
-    post:
-      operationId: createMark
-      description: ''
-      parameters: []
-=======
                   $ref: '#/components/schemas/ProfileMembership'
           description: ''
       tags:
@@ -2099,80 +1494,16 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Mark'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Mark'
-=======
               $ref: '#/components/schemas/ProfileMembership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ProfileMembership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ProfileMembership'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '201':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Mark'
-          description: ''
-      tags:
-      - student-profile
-  /student_profile/mark/{id}/:
-    get:
-      operationId: retrieveMark
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this mark.
-        schema:
-          type: string
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Mark'
-          description: ''
-      tags:
-      - student-profile
-    put:
-      operationId: updateMark
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this mark.
-        schema:
-          type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Mark'
-=======
                 $ref: '#/components/schemas/ProfileMembership'
           description: ''
       tags:
@@ -2194,26 +1525,11 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Mark'
-          description: ''
-      tags:
-      - student-profile
-    patch:
-      operationId: partialUpdateMark
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this mark.
-=======
                 $ref: '#/components/schemas/ProfileMembership'
           description: ''
       tags:
@@ -2232,49 +1548,18 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Mark'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Mark'
-=======
               $ref: '#/components/schemas/ProfileMembership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ProfileMembership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ProfileMembership'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Mark'
-          description: ''
-      tags:
-      - student-profile
-    delete:
-      operationId: destroyMark
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this mark.
-=======
                 $ref: '#/components/schemas/ProfileMembership'
           description: ''
       tags:
@@ -2293,21 +1578,12 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /student_profile/experience/:
-    get:
-      operationId: listExperiences
-      description: ''
-      parameters: []
-=======
       - api
   /api/student-profile/profiles/{profile_pk}/contacts/:
     get:
@@ -2320,7 +1596,6 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
@@ -2328,16 +1603,6 @@ paths:
               schema:
                 type: array
                 items:
-<<<<<<< HEAD
-                  $ref: '#/components/schemas/Experience'
-          description: ''
-      tags:
-      - student-profile
-    post:
-      operationId: createExperience
-      description: ''
-      parameters: []
-=======
                   $ref: '#/components/schemas/Contact'
           description: ''
       tags:
@@ -2352,48 +1617,16 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Experience'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Experience'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Experience'
-=======
               $ref: '#/components/schemas/Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Contact'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Contact'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '201':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Experience'
-          description: ''
-      tags:
-      - student-profile
-  /student_profile/experience/{id}/:
-    get:
-      operationId: retrieveExperience
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this experience.
-=======
                 $ref: '#/components/schemas/Contact'
           description: ''
       tags:
@@ -2413,7 +1646,6 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
@@ -2421,20 +1653,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Experience'
-          description: ''
-      tags:
-      - student-profile
-    put:
-      operationId: updateExperience
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this experience.
-=======
                 $ref: '#/components/schemas/Contact'
           description: ''
       tags:
@@ -2453,49 +1671,18 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Experience'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Experience'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Experience'
-=======
               $ref: '#/components/schemas/Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Contact'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Contact'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Experience'
-          description: ''
-      tags:
-      - student-profile
-    patch:
-      operationId: partialUpdateExperience
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this experience.
-=======
                 $ref: '#/components/schemas/Contact'
           description: ''
       tags:
@@ -2514,49 +1701,18 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Experience'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Experience'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Experience'
-=======
               $ref: '#/components/schemas/Contact'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Contact'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Contact'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Experience'
-          description: ''
-      tags:
-      - student-profile
-    delete:
-      operationId: destroyExperience
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this experience.
-=======
                 $ref: '#/components/schemas/Contact'
           description: ''
       tags:
@@ -2575,21 +1731,12 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /student_profile/project/:
-    get:
-      operationId: listProjects
-      description: ''
-      parameters: []
-=======
       - api
   /api/student-profile/profiles/{profile_pk}/marks/:
     get:
@@ -2602,7 +1749,6 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
@@ -2610,16 +1756,6 @@ paths:
               schema:
                 type: array
                 items:
-<<<<<<< HEAD
-                  $ref: '#/components/schemas/Project'
-          description: ''
-      tags:
-      - student-profile
-    post:
-      operationId: createProject
-      description: ''
-      parameters: []
-=======
                   $ref: '#/components/schemas/Mark'
           description: ''
       tags:
@@ -2634,48 +1770,16 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Project'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Project'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Project'
-=======
               $ref: '#/components/schemas/Mark'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Mark'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '201':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Project'
-          description: ''
-      tags:
-      - student-profile
-  /student_profile/project/{id}/:
-    get:
-      operationId: retrieveProject
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this project.
-=======
                 $ref: '#/components/schemas/Mark'
           description: ''
       tags:
@@ -2695,7 +1799,6 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
@@ -2703,20 +1806,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Project'
-          description: ''
-      tags:
-      - student-profile
-    put:
-      operationId: updateProject
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this project.
-=======
                 $ref: '#/components/schemas/Mark'
           description: ''
       tags:
@@ -2735,49 +1824,18 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Project'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Project'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Project'
-=======
               $ref: '#/components/schemas/Mark'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Mark'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Project'
-          description: ''
-      tags:
-      - student-profile
-    patch:
-      operationId: partialUpdateProject
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this project.
-=======
                 $ref: '#/components/schemas/Mark'
           description: ''
       tags:
@@ -2796,49 +1854,18 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Project'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Project'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Project'
-=======
               $ref: '#/components/schemas/Mark'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Mark'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Mark'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Project'
-          description: ''
-      tags:
-      - student-profile
-    delete:
-      operationId: destroyProject
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this project.
-=======
                 $ref: '#/components/schemas/Mark'
           description: ''
       tags:
@@ -2857,21 +1884,12 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /student_profile/membership/:
-    get:
-      operationId: listMemberships
-      description: ''
-      parameters: []
-=======
       - api
   /api/student-profile/profiles/{profile_pk}/experiences/:
     get:
@@ -2884,7 +1902,6 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
@@ -2892,16 +1909,6 @@ paths:
               schema:
                 type: array
                 items:
-<<<<<<< HEAD
-                  $ref: '#/components/schemas/Membership'
-          description: ''
-      tags:
-      - student-profile
-    post:
-      operationId: createMembership
-      description: ''
-      parameters: []
-=======
                   $ref: '#/components/schemas/Experience'
           description: ''
       tags:
@@ -2916,48 +1923,16 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Membership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Membership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Membership'
-=======
               $ref: '#/components/schemas/Experience'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Experience'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Experience'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '201':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Membership'
-          description: ''
-      tags:
-      - student-profile
-  /student_profile/membership/{id}/:
-    get:
-      operationId: retrieveMembership
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this membership.
-=======
                 $ref: '#/components/schemas/Experience'
           description: ''
       tags:
@@ -2977,7 +1952,6 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
@@ -2985,20 +1959,6 @@ paths:
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Membership'
-          description: ''
-      tags:
-      - student-profile
-    put:
-      operationId: updateMembership
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this membership.
-=======
                 $ref: '#/components/schemas/Experience'
           description: ''
       tags:
@@ -3024,12 +1984,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Experience'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Experience'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Experience'
       responses:
         '200':
           content:
@@ -3053,27 +2007,11 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
-            schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Membership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Membership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Membership'
-=======
-              $ref: '#/components/schemas/Experience'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Experience'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Experience'
       responses:
@@ -3143,12 +2081,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/ProjectMembership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ProjectMembership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ProjectMembership'
       responses:
         '201':
           content:
@@ -3175,26 +2107,11 @@ paths:
         description: ''
         schema:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Membership'
-          description: ''
-      tags:
-      - student-profile
-    patch:
-      operationId: partialUpdateMembership
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this membership.
-=======
                 $ref: '#/components/schemas/ProjectMembership'
           description: ''
       tags:
@@ -3213,49 +2130,18 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       requestBody:
         content:
           application/json:
             schema:
-<<<<<<< HEAD
-              $ref: '#/components/schemas/Membership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Membership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Membership'
-=======
               $ref: '#/components/schemas/ProjectMembership'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/ProjectMembership'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/ProjectMembership'
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       responses:
         '200':
           content:
             application/json:
               schema:
-<<<<<<< HEAD
-                $ref: '#/components/schemas/Membership'
-          description: ''
-      tags:
-      - student-profile
-    delete:
-      operationId: destroyMembership
-      description: ''
-      parameters:
-      - name: id
-        in: path
-        required: true
-        description: A unique integer value identifying this membership.
-=======
                 $ref: '#/components/schemas/ProjectMembership'
           description: ''
       tags:
@@ -3274,20 +2160,14 @@ paths:
         in: path
         required: true
         description: ''
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         schema:
           type: string
       responses:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - student-profile
-  /tag/tag/:
-=======
       - api
   /api/tag/tags/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listTags
       description: ''
@@ -3302,11 +2182,7 @@ paths:
                   $ref: '#/components/schemas/Tag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createTag
       description: ''
@@ -3314,12 +2190,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Tag'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Tag'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Tag'
       responses:
@@ -3330,13 +2200,8 @@ paths:
                 $ref: '#/components/schemas/Tag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-  /tag/tag/{id}/:
-=======
       - api
   /api/tag/tags/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveTag
       description: ''
@@ -3355,11 +2220,7 @@ paths:
                 $ref: '#/components/schemas/Tag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateTag
       description: ''
@@ -3375,12 +2236,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Tag'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Tag'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Tag'
       responses:
         '200':
           content:
@@ -3389,11 +2244,7 @@ paths:
                 $ref: '#/components/schemas/Tag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateTag
       description: ''
@@ -3409,12 +2260,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Tag'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Tag'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Tag'
       responses:
         '200':
           content:
@@ -3423,11 +2268,7 @@ paths:
                 $ref: '#/components/schemas/Tag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyTag
       description: ''
@@ -3442,13 +2283,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-  /tag/tagged-item/:
-=======
       - api
   /api/tag/tagged-items/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listTaggedItems
       description: ''
@@ -3463,11 +2299,7 @@ paths:
                   $ref: '#/components/schemas/TaggedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createTaggedItem
       description: ''
@@ -3475,12 +2307,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/TaggedItem'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TaggedItem'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/TaggedItem'
       responses:
@@ -3491,13 +2317,8 @@ paths:
                 $ref: '#/components/schemas/TaggedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-  /tag/tagged-item/{id}/:
-=======
       - api
   /api/tag/tagged-items/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveTaggedItem
       description: ''
@@ -3516,11 +2337,7 @@ paths:
                 $ref: '#/components/schemas/TaggedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateTaggedItem
       description: ''
@@ -3536,12 +2353,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TaggedItem'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TaggedItem'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TaggedItem'
       responses:
         '200':
           content:
@@ -3550,11 +2361,7 @@ paths:
                 $ref: '#/components/schemas/TaggedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateTaggedItem
       description: ''
@@ -3570,12 +2377,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TaggedItem'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TaggedItem'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TaggedItem'
       responses:
         '200':
           content:
@@ -3584,11 +2385,7 @@ paths:
                 $ref: '#/components/schemas/TaggedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyTaggedItem
       description: ''
@@ -3603,13 +2400,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-  /tag/suggested-tag/:
-=======
       - api
   /api/tag/suggested-tags/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listSuggestedTags
       description: ''
@@ -3624,11 +2416,7 @@ paths:
                   $ref: '#/components/schemas/SuggestedTag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createSuggestedTag
       description: ''
@@ -3636,12 +2424,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/SuggestedTag'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SuggestedTag'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SuggestedTag'
       responses:
@@ -3652,13 +2434,8 @@ paths:
                 $ref: '#/components/schemas/SuggestedTag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-  /tag/suggested-tag/{id}/:
-=======
       - api
   /api/tag/suggested-tags/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveSuggestedTag
       description: ''
@@ -3677,11 +2454,7 @@ paths:
                 $ref: '#/components/schemas/SuggestedTag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateSuggestedTag
       description: ''
@@ -3697,12 +2470,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SuggestedTag'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SuggestedTag'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SuggestedTag'
       responses:
         '200':
           content:
@@ -3711,11 +2478,7 @@ paths:
                 $ref: '#/components/schemas/SuggestedTag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateSuggestedTag
       description: ''
@@ -3731,12 +2494,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SuggestedTag'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SuggestedTag'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SuggestedTag'
       responses:
         '200':
           content:
@@ -3745,11 +2502,7 @@ paths:
                 $ref: '#/components/schemas/SuggestedTag'
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroySuggestedTag
       description: ''
@@ -3764,13 +2517,8 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - tag
-  /vote/voted-item/:
-=======
       - api
   /api/vote/voted-items/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: listVotedItems
       description: ''
@@ -3785,11 +2533,7 @@ paths:
                   $ref: '#/components/schemas/VotedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - vote
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     post:
       operationId: createVotedItem
       description: ''
@@ -3797,12 +2541,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/VotedItem'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/VotedItem'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/VotedItem'
       responses:
@@ -3813,13 +2551,8 @@ paths:
                 $ref: '#/components/schemas/VotedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - vote
-  /vote/voted-item/{id}/:
-=======
       - api
   /api/vote/voted-items/{id}/:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     get:
       operationId: retrieveVotedItem
       description: ''
@@ -3838,11 +2571,7 @@ paths:
                 $ref: '#/components/schemas/VotedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - vote
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     put:
       operationId: updateVotedItem
       description: ''
@@ -3858,12 +2587,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/VotedItem'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/VotedItem'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/VotedItem'
       responses:
         '200':
           content:
@@ -3872,11 +2595,7 @@ paths:
                 $ref: '#/components/schemas/VotedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - vote
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     patch:
       operationId: partialUpdateVotedItem
       description: ''
@@ -3892,12 +2611,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/VotedItem'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/VotedItem'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/VotedItem'
       responses:
         '200':
           content:
@@ -3906,11 +2619,7 @@ paths:
                 $ref: '#/components/schemas/VotedItem'
           description: ''
       tags:
-<<<<<<< HEAD
-      - vote
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     delete:
       operationId: destroyVotedItem
       description: ''
@@ -3925,11 +2634,7 @@ paths:
         '204':
           description: ''
       tags:
-<<<<<<< HEAD
-      - vote
-=======
       - api
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
   /auth/users/activation/:
     post:
       operationId: activationUser
@@ -3938,12 +2643,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/Activation'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Activation'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/Activation'
       responses:
@@ -3965,12 +2664,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SendEmailReset'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SendEmailReset'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SendEmailReset'
       responses:
         '201':
           content:
@@ -3988,12 +2681,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/SendEmailReset'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SendEmailReset'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SendEmailReset'
       responses:
@@ -4015,12 +2702,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/PasswordResetConfirm'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PasswordResetConfirm'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PasswordResetConfirm'
       responses:
         '201':
           content:
@@ -4038,12 +2719,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/SendEmailReset'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SendEmailReset'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SendEmailReset'
       responses:
@@ -4065,12 +2740,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/UsernameResetConfirm'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/UsernameResetConfirm'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/UsernameResetConfirm'
       responses:
         '201':
           content:
@@ -4090,12 +2759,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/SetPassword'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SetPassword'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/SetPassword'
       responses:
         '201':
           content:
@@ -4113,12 +2776,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/SetUsername'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/SetUsername'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/SetUsername'
       responses:
@@ -4143,12 +2800,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TokenObtainPair'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenObtainPair'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TokenObtainPair'
       responses:
         '201':
           content:
@@ -4171,12 +2822,6 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/TokenRefresh'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenRefresh'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TokenRefresh'
       responses:
         '201':
           content:
@@ -4197,12 +2842,6 @@ paths:
       requestBody:
         content:
           application/json:
-            schema:
-              $ref: '#/components/schemas/TokenVerify'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TokenVerify'
-          multipart/form-data:
             schema:
               $ref: '#/components/schemas/TokenVerify'
       responses:
@@ -4308,14 +2947,6 @@ components:
           type: string
         advice_and_tools:
           type: string
-<<<<<<< HEAD
-        students:
-          type: array
-          items:
-            type: string
-          readOnly: true
-=======
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         dependencies:
           type: array
           items:
@@ -4445,13 +3076,6 @@ components:
     Profile:
       type: object
       properties:
-<<<<<<< HEAD
-        user:
-          type: integer
-        name:
-          type: string
-          maxLength: 255
-=======
         user_id:
           type: integer
           readOnly: true
@@ -4463,7 +3087,6 @@ components:
           type: string
         email:
           type: string
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
         gender:
           enum:
           - M
@@ -4497,11 +3120,6 @@ components:
           type: string
           format: date
           nullable: true
-<<<<<<< HEAD
-      required:
-      - user
-      - name
-=======
         contacts:
           type: array
           items:
@@ -4637,7 +3255,6 @@ components:
       - first_name
       - last_name
       - email
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       - gender
       - points
       - address
@@ -4645,8 +3262,6 @@ components:
       - preferences
       - birth_date
       - start_date
-<<<<<<< HEAD
-=======
     Project:
       type: object
       properties:
@@ -4803,7 +3418,6 @@ components:
       required:
       - position
       - project
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     Contact:
       type: object
       properties:
@@ -4823,18 +3437,9 @@ components:
             -\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
             -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{1,5})?(?:[/?#][^\\\
             s]*)?\\z"
-<<<<<<< HEAD
-        profile:
-          type: string
       required:
       - type
       - link
-      - profile
-=======
-      required:
-      - type
-      - link
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     Mark:
       type: object
       properties:
@@ -4849,18 +3454,6 @@ components:
           maximum: 4294967295
           format: int64
           minimum: 0
-<<<<<<< HEAD
-        data:
-          type: string
-          format: date
-        profile:
-          type: string
-      required:
-      - subject_name
-      - mark
-      - data
-      - profile
-=======
         date:
           type: string
           format: date
@@ -4868,7 +3461,6 @@ components:
       - subject_name
       - mark
       - date
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     Experience:
       type: object
       properties:
@@ -4892,62 +3484,12 @@ components:
           nullable: true
         is_certified:
           type: boolean
-<<<<<<< HEAD
-        profile:
-          type: string
-=======
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       required:
       - name
       - type
       - description
       - start_date
-<<<<<<< HEAD
-      - profile
-    Project:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-        title:
-          type: string
-          maxLength: 255
-        description:
-          type: string
-        link:
-          type: string
-          format: uri
-          maxLength: 200
-          pattern: "^(?:[a-z0-9.+-]*)://(?:[^\\s:@/]+(?::[^\\s:@/]*)?@)?(?:(?:0|25[0-5]|2[0-4]\\\
-            d|1\\d?\\d?|[1-9]\\d?)(?:\\.(?:0|25[0-5]|2[0-4]\\d|1\\d?\\d?|[1-9]\\d?)){3}|\\\
-            [[0-9a-f:.]+\\]|([a-z\xA1-\uFFFF0-9](?:[a-z\xA1-\uFFFF0-9-]{0,61}[a-z\xA1\
-            -\uFFFF0-9])?(?:\\.(?!-)[a-z\xA1-\uFFFF0-9-]{1,63}(?<!-))*\\.(?!-)(?:[a-z\xA1\
-            -\uFFFF-]{2,63}|xn--[a-z0-9]{1,59})(?<!-)\\.?|localhost))(?::\\d{1,5})?(?:[/?#][^\\\
-            s]*)?\\z"
-        is_cerified:
-          type: boolean
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-          nullable: true
-        members:
-          type: array
-          items:
-            type: string
-          readOnly: true
-      required:
-      - title
-      - description
-      - link
-      - start_date
-    Membership:
-=======
     ProjectMembership:
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
       type: object
       properties:
         id:
@@ -4957,15 +3499,6 @@ components:
           type: string
           maxLength: 255
         profile:
-<<<<<<< HEAD
-          type: string
-        project:
-          type: integer
-      required:
-      - position
-      - profile
-      - project
-=======
           type: object
           properties:
             user_id:
@@ -5027,7 +3560,6 @@ components:
       required:
       - position
       - profile
->>>>>>> 47d81ef3ab39de3645fcb137740083e1a846cb6b
     Tag:
       type: object
       properties:

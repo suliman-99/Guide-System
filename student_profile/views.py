@@ -1,8 +1,10 @@
+from django.http import HttpResponse
 from rest_framework.viewsets import ModelViewSet
-
-from student_profile.permissions import IsOwnerOrReadOnly
+from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from .serializers import *
-from rest_framework import permissions
+
 
 class ContactViewSet(ModelViewSet):
     serializer_class = ContactSerializer
@@ -90,6 +92,12 @@ class ProfileViewSet(ModelViewSet):
                 if not self.kwargs.get('pk', None) is None:
                     return {'pk': self.kwargs['pk']}
         return {}
+
+    @action(detail=True, permission_classes=[IsAuthenticated], url_name='profile')
+    def me(self, request, pk=None):
+        profile = self.queryset.filter(user=request.user).get()
+        serializer = ProfileSerializer(profile)
+        return Response(serializer.data) 
 
     def get_serializer_class(self):
         if not self.request is None:

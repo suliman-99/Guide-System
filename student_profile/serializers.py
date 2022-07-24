@@ -1,4 +1,4 @@
-from typing_extensions import Required
+# from typing_extensions import Required
 from django.shortcuts import get_object_or_404
 from rest_framework import serializers
 from .models import *
@@ -25,8 +25,6 @@ class MarkSerializer(serializers.ModelSerializer):
 
 
 class ExperienceSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-
     class Meta:
         model = Experience
         fields = ['id', 'name', 'type', 'description',
