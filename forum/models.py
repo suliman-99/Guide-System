@@ -1,9 +1,10 @@
+from django.conf import settings
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class Forum(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     content = models.TextField()
     is_question = models.BooleanField()
@@ -17,7 +18,8 @@ class Forum(models.Model):
 
 
 class Reply(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
     content = models.TextField()
     time = models.DateTimeField(auto_now_add=True)

@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
+
 
 class Profile(models.Model):
     GENDER_MALE = 'M'
@@ -11,17 +12,19 @@ class Profile(models.Model):
     ]
 
     user = models.OneToOneField(
-        User, primary_key=True, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    points = models.PositiveBigIntegerField()
+    points = models.PositiveBigIntegerField(default=0)
     photo = models.ImageField(null=True, upload_to='photos')
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
     birth_date = models.DateField()
-    is_graduated = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
+
+    def get_public_link(self, request):
+        return request.build_absolute_uri('/api/student-profile/profiles/' + str(self.user.id))
 
 
 class Project(models.Model):

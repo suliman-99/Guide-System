@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 
 
 class Page(models.Model):
@@ -89,7 +89,8 @@ class Feedback(models.Model):
 
 
 class FinishedPage(models.Model):
-    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    student = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     page = models.ForeignKey(Page, on_delete=models.CASCADE)
 
     def __str__(self):

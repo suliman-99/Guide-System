@@ -1,5 +1,5 @@
 # from typing_extensions import Required
-from django.shortcuts import get_object_or_404
+from datetime import datetime
 from rest_framework import serializers
 from .models import *
 
@@ -46,13 +46,21 @@ class SmallProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user_id', 'username', 'first_name', 'last_name', 'email', 'gender', 'points', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date']
+                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date', 'public_link']
 
-    user_id = serializers.IntegerField(read_only=True)
+    user_id = serializers.UUIDField(read_only=True)
     username = serializers.CharField(source='user.username')
     first_name = serializers.CharField(source='user.first_name')
     last_name = serializers.CharField(source='user.last_name')
     email = serializers.CharField(source='user.email')
+    is_graduated = serializers.SerializerMethodField()
+    public_link = serializers.SerializerMethodField()
+
+    def get_is_graduated(self, profile):
+        return profile.end_date is not None and self.end_date > datetime.now()
+
+    def get_public_link(self, profile):
+        return profile.get_public_link(self.context['request'])
 
 
 class ProfileMembershipSerializer(serializers.ModelSerializer):
@@ -84,10 +92,10 @@ class updateProfileMembershipSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['user_id', 'username', 'first_name', 'last_name', 'email', 'gender', 'points', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date', 'contacts', 'marks', 'experiences', 'memberships']
+        fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'gender', 'points', 'photo', 'address', 'services',
+                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date', 'contacts', 'marks', 'experiences', 'memberships', 'public_link']
 
-    user_id = serializers.IntegerField(read_only=True)
+    user_id = serializers.UUIDField(read_only=True)
     username = serializers.CharField(source='user.username')
     first_name = serializers.CharField(source='user.first_name')
     last_name = serializers.CharField(source='user.last_name')
@@ -96,31 +104,39 @@ class ProfileSerializer(serializers.ModelSerializer):
     marks = MarkSerializer(many=True, read_only=True)
     experiences = ExperienceSerializer(many=True, read_only=True)
     memberships = ProfileMembershipSerializer(many=True, read_only=True)
+    is_graduated = serializers.SerializerMethodField()
+    public_link = serializers.SerializerMethodField()
+
+    def get_is_graduated(self, profile):
+        return profile.end_date is not None and self.end_date > datetime.now()
+
+    def get_public_link(self, profile):
+        return profile.get_public_link(self.context['request'])
 
 
 class CreateProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['user_id', 'gender', 'points', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date']
+        fields = ['user_id', 'gender', 'photo', 'address', 'services',
+                  'preferences', 'birth_date', 'start_date', 'end_date']
 
-    user_id = serializers.IntegerField()
+    user_id = serializers.UUIDField()
 
 
 class UpdateProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['username', 'first_name', 'last_name', 'email', 'gender', 'points', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'end_date']
+        fields = ['username', 'email', 'first_name', 'last_name', 'gender', 'photo', 'address', 'services',
+                  'preferences', 'birth_date', 'start_date', 'end_date']
 
     username = serializers.CharField(source='user.username')
+    email = serializers.CharField(source='user.email')
     first_name = serializers.CharField(source='user.first_name')
     last_name = serializers.CharField(source='user.last_name')
-    email = serializers.CharField(source='user.email')
 
     def update(self, instance, validated_data):
-        user = get_object_or_404(User, pk=self.context['pk'])
         data = validated_data.pop('user')
+        user = instance.user
         user.username = data.get('username', user.username)
         user.first_name = data.get('first_name', user.first_name)
         user.last_name = data.get('last_name', user.last_name)
@@ -143,7 +159,7 @@ class CreateProjectMembershipSerializer(serializers.ModelSerializer):
         model = Membership
         fields = ['position', 'profile_id']
 
-    profile_id = serializers.IntegerField()
+    profile_id = serializers.UUIDField()
 
     def create(self, validated_data):
         project_id = self.context['project_id']
