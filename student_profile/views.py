@@ -146,5 +146,11 @@ class ProfileViewSet(ModelViewSet):
 
 
 class ProjectViewSet(ModelViewSet):
+    http_method_names = ['get', 'post', 'patch', 'delete']
     queryset = Project.objects.prefetch_related('memberships__profile')
-    serializer_class = ProjectSerializer
+
+    def get_serializer_class(self):
+        if self.request is not None:
+            if self.request.method in ['POST', 'PATCH']:
+                return CreateProjectSerializer
+        return ProjectSerializer

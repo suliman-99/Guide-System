@@ -3,6 +3,8 @@ from datetime import datetime
 from rest_framework import serializers
 from .models import *
 
+# ---------------------------------------------------------------------------------
+
 
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,6 +37,7 @@ class ExperienceSerializer(serializers.ModelSerializer):
         return Experience.objects.create(profile_id=profile_id, **validated_data)
 
 
+# ---------------------------------------------------------------------------------
 class SmallProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
@@ -63,6 +66,7 @@ class SmallProfileSerializer(serializers.ModelSerializer):
         return profile.get_public_link(self.context['request'])
 
 
+# ---------------------------------------------------------------------------------
 class ProfileMembershipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
@@ -87,6 +91,8 @@ class updateProfileMembershipSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
         fields = ['position']
+
+# ---------------------------------------------------------------------------------
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -145,6 +151,8 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
         instance.user = user
         return super().update(instance, validated_data)
 
+# ---------------------------------------------------------------------------------
+
 
 class ProjectMembershipSerializer(serializers.ModelSerializer):
     class Meta:
@@ -171,6 +179,8 @@ class updateProjectMembershipSerializer(serializers.ModelSerializer):
         model = Membership
         fields = ['position']
 
+# ---------------------------------------------------------------------------------
+
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
@@ -178,4 +188,13 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description', 'link',
                   'is_cerified', 'start_date', 'end_date', 'memberships']
 
-    memberships = ProjectMembershipSerializer(many=True, read_only=True)
+    memberships = ProjectMembershipSerializer(read_only=True, many=True)
+
+
+class CreateProjectSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ['title', 'description', 'link',
+                  'is_cerified', 'start_date', 'end_date']
+
+# ---------------------------------------------------------------------------------
