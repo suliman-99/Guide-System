@@ -21,32 +21,10 @@ class Profile(models.Model):
     preferences = models.TextField()
     birth_date = models.DateField()
     start_date = models.DateField()
-    end_date = models.DateField(null=True)
+    graduate_date = models.DateField(null=True)
 
     def get_public_link(self, request):
         return request.build_absolute_uri('/api/student-profile/profiles/' + str(self.user.id))
-
-
-class Project(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    link = models.URLField()
-    is_cerified = models.BooleanField(default=False)
-    start_date = models.DateField()
-    end_date = models.DateField(null=True)
-    members = models.ManyToManyField(
-        Profile, through='Membership', related_name='projects')
-
-
-class Membership(models.Model):
-    profile = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, related_name='memberships')
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, related_name='memberships')
-    position = models.CharField(max_length=255)
-
-    class Meta:
-        unique_together = ('profile', 'project')
 
 
 class Contact(models.Model):
@@ -73,3 +51,15 @@ class Experience(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True)
     is_certified = models.BooleanField(default=False)
+
+
+class Project(models.Model):
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE,  related_name='projects')
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    position = models.CharField(max_length=255)
+    link = models.URLField()
+    is_cerified = models.BooleanField(default=False)
+    start_date = models.DateField()
+    end_date = models.DateField(null=True)

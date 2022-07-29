@@ -8,7 +8,7 @@ class UserCreateSerializer(BaseUserCreateSerializer):
         fields = ['id', 'username', 'password',
                   'email', 'first_name', 'last_name']
 
-    id = serializers.UUIDField(read_only=True)
+    id = serializers.IntegerField(read_only=True)
 
 
 class UserSerializer(BaseUserSerializer):

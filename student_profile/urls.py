@@ -3,28 +3,11 @@ from .views import *
 
 router = routers.DefaultRouter()
 router.register('profiles', ProfileViewSet)
-router.register('projects', ProjectViewSet)
 
 profile_router = routers.NestedDefaultRouter(
     router,
     'profiles',
     lookup='profile'
-)
-Project_router = routers.NestedDefaultRouter(
-    router,
-    'projects',
-    lookup='project'
-)
-
-profile_router.register(
-    'memberships',
-    ProfileMembershipViewSet,
-    basename='profile-memberships'
-)
-Project_router.register(
-    'memberships',
-    ProjectMembershipViewSet,
-    basename='project-memberships'
 )
 
 profile_router.register(
@@ -43,4 +26,10 @@ profile_router.register(
     basename='profile-experiences'
 )
 
-urlpatterns = router.urls + profile_router.urls + Project_router.urls
+profile_router.register(
+    'projects',
+    ProjectViewSet,
+    basename='profile-projects'
+)
+
+urlpatterns = router.urls + profile_router.urls
