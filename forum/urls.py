@@ -1,8 +1,19 @@
-from rest_framework.routers import DefaultRouter
+from rest_framework_nested import routers
 from .views import *
 
-router = DefaultRouter()
-router.register('forums', ForumViewSet, basename='forum')
-router.register('replies', ReplyViewSet, basename='reply')
+router = routers.DefaultRouter()
+router.register('forums', ForumViewSet,)
 
-urlpatterns = router.urls
+forum_router = routers.NestedDefaultRouter(
+    router,
+    'forums',
+    lookup='forum'
+)
+
+forum_router.register(
+    'replies',
+    ReplyViewSet,
+    basename='forum-replies'
+)
+
+urlpatterns = router.urls + forum_router.urls

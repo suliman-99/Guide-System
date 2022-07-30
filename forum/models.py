@@ -8,21 +8,15 @@ class Forum(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
     is_question = models.BooleanField()
-    is_closed = models.BooleanField(default=False)
     closed_reply = models.ForeignKey(
-        'Reply', on_delete=models.SET_NULL, null=True, related_name='closed_forum')
+        'Reply', on_delete=models.SET_NULL, null=True, related_name='+')
     time = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.title} by {self.user} : {self.content}'
 
 
 class Reply(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
-    forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    forum = models.ForeignKey(
+        Forum, on_delete=models.CASCADE, related_name='replies')
     content = models.TextField()
     time = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f'{self.user} on {self.forum} : {self.content}'
