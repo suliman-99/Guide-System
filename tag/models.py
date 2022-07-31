@@ -3,33 +3,37 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 
 
+class TaggedManager(models.Manager):
+
+    def get_object_tags(self, content_type, object_id):
+        try:
+            content_type = int(content_type)
+        except:
+            content_type = ContentType.objects.get(model=content_type).id
+        return self.filter(content_type=content_type, object_id=object_id)
+
+
 class Tag(models.Model):
-    TYPE_GOOD = 'G'
-    TYPE_BAD = 'B'
-    TYPE_CHOICES = [
-        (TYPE_GOOD, 'Good'),
-        (TYPE_BAD, 'Bad')
-    ]
-    name = models.CharField(max_length=255)
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    number_of_uses = models.PositiveIntegerField()
-
-    def __str__(self):
-        return self.name
+    name = models.CharField(max_length=255, unique=True)
+    number_of_uses = models.PositiveIntegerField(default=0)
 
 
-class TaggedItem(models.Model):
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+class AppliedTag(models.Model):
+    objects = TaggedManager()
+
+    tag = models.ForeignKey(Tag, on_delete=models.PROTECT)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     contnet_object = GenericForeignKey()
 
-    def __str__(self):
-        return self.tag
+    class Meta:
+        unique_together = ['tag', 'content_type', 'object_id']
 
 
 class SuggestedTag(models.Model):
-    tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
+    objects = TaggedManager()
+
+    tag = models.ForeignKey(Tag, on_delete=models.PROTECT)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     contnet_object = GenericForeignKey()
@@ -37,5 +41,5 @@ class SuggestedTag(models.Model):
     # descripe if this tag suggested to add or to delete
     is_add = models.BooleanField()
 
-    def __str__(self):
-        return self.tag
+    class Meta:
+        unique_together = ['tag', 'content_type', 'object_id']
