@@ -2,6 +2,14 @@ from django.db import models
 from django.conf import settings
 
 
+def page_background_path(instance, filename):
+    return f'road_map/pages/{instance.id}/backgrounds/{filename}'
+
+
+def page_icon_path(instance, filename):
+    return f'road_map/pages/{instance.id}/icons/{filename}'
+
+
 class Page(models.Model):
 
     TYPE_LEAF = 'L'
@@ -16,8 +24,8 @@ class Page(models.Model):
 
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    background = models.ImageField(upload_to='road_map/pages/backgrounds')
-    icon = models.ImageField(upload_to='road_map/pages/icons')
+    background = models.ImageField(upload_to=page_background_path)
+    icon = models.ImageField(upload_to=page_icon_path)
     view_template = models.TextField(null=True)
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()

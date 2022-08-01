@@ -2,6 +2,10 @@ from django.db import models
 from django.conf import settings
 
 
+def profile_photo_path(instance, filename):
+    return f'student_profile/profiles/{instance.user_id}/photos/{filename}'
+
+
 class Profile(models.Model):
     GENDER_MALE = 'M'
     GENDER_FEMALE = 'F'
@@ -16,7 +20,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     points = models.PositiveBigIntegerField(default=0)
     photo = models.ImageField(
-        null=True, upload_to='student_profile/profiles/photos')
+        null=True, upload_to=profile_photo_path)
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
