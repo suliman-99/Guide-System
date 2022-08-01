@@ -59,6 +59,7 @@ class ProjectViewSet(ModelViewSet):
 
 class ProfileViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
+
     queryset = Profile.objects \
         .select_related('user') \
         .prefetch_related('contacts') \

@@ -15,7 +15,8 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     points = models.PositiveBigIntegerField(default=0)
-    photo = models.ImageField(null=True, upload_to='photos')
+    photo = models.ImageField(
+        null=True, upload_to='student_profile/profiles/photos')
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()

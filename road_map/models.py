@@ -16,8 +16,8 @@ class Page(models.Model):
 
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    background = models.ImageField(upload_to='backgrounds')
-    icon = models.ImageField(upload_to='icons')
+    background = models.ImageField(upload_to='road_map/pages/backgrounds')
+    icon = models.ImageField(upload_to='road_map/pages/icons')
     view_template = models.TextField(null=True)
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
