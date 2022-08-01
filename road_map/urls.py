@@ -1,13 +1,50 @@
-from rest_framework.routers import DefaultRouter
+from rest_framework_nested import routers
 from .views import *
 
-router = DefaultRouter()
+router = routers.DefaultRouter()
 router.register('pages', PageViewSet, basename='pages')
-router.register('page-references-features', PageReferencesFeatureViewSet, basename='page-references-feature')
-router.register('page-references', PageReferenceViewSet, basename='page-reference')
-router.register('features', FeatureViewSet, basename='feature')
-router.register('contents', ContentViewSet, basename='content')
-router.register('feedbacks', FeedbackViewSet, basename='feedback')
-router.register('finished-pages', FinishedPageViewSet, basename='finished-page')
+router.register('page-references-features',
+                FeatureViewSet, basename='page-references-feature')
+router.register('page-references', ReferenceViewSet,
+                basename='page-reference')
+router.register('features', ReferenceFeatureViewSet, basename='feature')
 
-urlpatterns = router.urls
+page_router = routers.NestedDefaultRouter(
+    router,
+    'pages',
+    lookup='page'
+)
+
+page_router.register(
+    'contents',
+    ContentViewSet,
+    basename='page-contents'
+)
+page_router.register(
+    'feedbacks',
+    FeedbackViewSet,
+    basename='page-feedbacks'
+)
+page_router.register(
+    'finished-users',
+    FinishedPageViewSet,
+    basename='page-finished-users'
+)
+page_router.register(
+    'features',
+    FeatureViewSet,
+    basename='page-features'
+)
+page_router.register(
+    'references',
+    ReferenceViewSet,
+    basename='page-references'
+)
+page_router.register(
+    'dependencies',
+    DependencyViewSet,
+    basename='page-dependencies'
+)
+
+
+urlpatterns = router.urls + page_router.urls

@@ -22,7 +22,7 @@ class Page(models.Model):
         (TYPE_AND, 'And')
     ]
 
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=255, unique=True)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     background = models.ImageField(upload_to=page_background_path)
     icon = models.ImageField(upload_to=page_icon_path)
@@ -30,76 +30,67 @@ class Page(models.Model):
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
 
-    dependencies = models.ManyToManyField(
-        'Page', related_name='related_dependencies')
-    references = models.ManyToManyField(
-        'Page', related_name='related_references', through='PageReference')
-
-    def __str__(self):
-        return self.title
-
-
-class PageReferencesFeature(models.Model):
-    page = models.ForeignKey(
-        Page, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f' {self.page} - {self.name}'
-
-    class Meta:
-        db_table = 'road_map_page_references_feature'
-
-
-class PageReference(models.Model):
-    parent_page = models.ForeignKey(
-        Page, on_delete=models.CASCADE, related_name='reference_children_set')
-    referenced_page = models.ForeignKey(
-        Page, on_delete=models.PROTECT, related_name='reference_parent_set')
-    index = models.PositiveIntegerField()
-    features = models.ManyToManyField(
-        PageReferencesFeature, related_name='page_references', through='Feature')
-
-    def __str__(self):
-        return f' {self.index} - {self.parent_page} -> {self.referenced_page}'
-
-    class Meta:
-        db_table = 'road_map_page_reference'
-
 
 class Feature(models.Model):
-    page_reference = models.ForeignKey(
-        PageReference, on_delete=models.CASCADE, related_name='features_set')
-    page_references_feature = models.ForeignKey(
-        PageReferencesFeature, on_delete=models.CASCADE, related_name='references_set')
+    page = models.ForeignKey(
+        Page, on_delete=models.CASCADE, related_name='features')
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        unique_together = ['page', 'name']
+
+
+class Reference(models.Model):
+    parent = models.ForeignKey(
+        Page, on_delete=models.CASCADE, related_name='reference_children')
+    child = models.ForeignKey(
+        Page, on_delete=models.PROTECT, related_name='reference_parents')
+    index = models.PositiveIntegerField()
+
+    class Meta:
+        unique_together = [['parent', 'child'], ['parent', 'index']]
+
+
+class ReferenceFeature(models.Model):
+    reference = models.ForeignKey(
+        Reference, on_delete=models.CASCADE, related_name='features')
+    feature = models.ForeignKey(
+        Feature, on_delete=models.CASCADE, related_name='references')
     value = models.CharField(max_length=255)
 
-    def __str__(self):
-        return f'{self.page_reference.parent_page} - {self.page_references_feature.name} : {self.value}'
+    class Meta:
+        unique_together = ['reference', 'feature']
+
+
+class Dependency(models.Model):
+    parent = models.ForeignKey(
+        Page, on_delete=models.CASCADE, related_name='dependency_children')
+    child = models.ForeignKey(
+        Page, on_delete=models.PROTECT, related_name='dependency_parents')
+
+    class Meta:
+        unique_together = ['parent', 'child']
 
 
 class Content(models.Model):
-    page = models.ForeignKey(Page, on_delete=models.CASCADE)
+    page = models.ForeignKey(
+        Page, on_delete=models.CASCADE, related_name='contents')
     title = models.CharField(max_length=255)
     content = models.TextField()
     link = models.URLField(max_length=255)
 
-    def __str__(self):
-        return f'{self.page} -> {self.title} : {self.content} \n {self.link}'
-
 
 class Feedback(models.Model):
-    page = models.ForeignKey(Page, on_delete=models.CASCADE)
+    page = models.ForeignKey(
+        Page, on_delete=models.CASCADE, related_name='feedbacks')
     content = models.TextField()
-
-    def __str__(self):
-        return self.content
 
 
 class FinishedPage(models.Model):
-    student = models.ForeignKey(
+    page = models.ForeignKey(
+        Page, on_delete=models.CASCADE, related_name='finished_users')
+    user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    page = models.ForeignKey(Page, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return f'{self.student} : {self.page}'
+    class Meta:
+        unique_together = ['page', 'user']
