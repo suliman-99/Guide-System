@@ -23,11 +23,10 @@ class ForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
         fields = ['id', 'user_id', 'title', 'content', 'is_question', 'time', 'is_closed',
-                  'closed_reply', 'replies']
+                  'closed_reply']
 
     is_closed = serializers.SerializerMethodField()
     closed_reply = ReplySerializer(read_only=True)
-    replies = ReplySerializer(many=True, read_only=True)
 
     def get_is_closed(self, forum):
         return forum.closed_reply is not None
