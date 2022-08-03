@@ -52,7 +52,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'gender', 'points', 'photo', 'address', 'services',
+        fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'gender', 'photo', 'address', 'services',
                   'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'contacts', 'marks', 'experiences', 'projects']
 
     user_id = serializers.IntegerField(read_only=True)

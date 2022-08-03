@@ -18,7 +18,6 @@ class Profile(models.Model):
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    points = models.PositiveBigIntegerField(default=0)
     photo = models.ImageField(
         null=True, upload_to=profile_photo_path)
     address = models.CharField(max_length=255)
