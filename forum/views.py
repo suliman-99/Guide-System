@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from forum.pagination import PageNumberPagination10
 from .serializers import *
 
@@ -35,8 +35,9 @@ class ReplyViewSet(ModelViewSet):
 class ForumViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
     pagination_class = PageNumberPagination10
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, OrderingFilter]
     search_fields = ['title', 'content']
+    ordering_fields = ['time']
 
     queryset = Forum.objects.all()
 
