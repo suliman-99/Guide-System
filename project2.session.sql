@@ -1,1 +1,1 @@
-DELETE from project2.road_map_feature;
+DELETE from project2.road_map_reference;

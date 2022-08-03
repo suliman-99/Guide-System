@@ -16,8 +16,12 @@ class VotedItemManager(models.Manager):
                          object_id=object_id, is_up=True).aggregate(Count('pk'))['pk__count']
         down = self.filter(content_type=content_type,
                            object_id=object_id, is_up=False).aggregate(Count('pk'))['pk__count']
-        votedItem = self.filter(content_type=content_type, object_id=object_id,
-                                user_id=user_id).only('id', 'is_up').first()
+        votedItems = self.filter(content_type=content_type, object_id=object_id,
+                                 user_id=user_id).only('id', 'is_up')
+        if votedItems:
+            votedItem = votedItems[0]
+        else:
+            votedItem = None
         data = {}
         data['vote_value'] = up - down
         if not votedItem:

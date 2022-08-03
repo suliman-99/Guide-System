@@ -19,24 +19,26 @@ class AppliedTagViewSet(ModelViewSet):
 
 
 class SuggestedTagViewSet(ModelViewSet):
-    http_method_names = ['post', 'delete']
+    http_method_names = ['get', 'post', 'delete']
     queryset = SuggestedTag.objects.all()
     serializer_class = SuggestedTagSerializer
 
-    @action(detail=True, methods=['delete'])
+    @action(detail=True, methods=['get', 'post', 'delete'])
     def accept(self, request, pk):
         suggested_tag = SuggestedTag.objects.get(pk=pk)
         if suggested_tag.is_add:
             AppliedTag.objects.get_or_create(
                 tag=suggested_tag.tag, content_type=suggested_tag.content_type, object_id=suggested_tag.object_id)
         else:
-            tagged_item = AppliedTag.objects.get(
+            tagged_items = AppliedTag.objects.filter(
                 tag=suggested_tag.tag, content_type=suggested_tag.content_type, object_id=suggested_tag.object_id)
-            tagged_item.delete()
+            if tagged_items:
+                tagged_item = tagged_items[0]
+                tagged_item.delete()
         suggested_tag.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-    @action(detail=True, methods=['delete'])
+    @action(detail=True, methods=['get', 'post', 'delete'])
     def reject(self, request, pk):
         suggested_tag = SuggestedTag.objects.get(pk=pk)
         suggested_tag.delete()

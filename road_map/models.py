@@ -29,6 +29,7 @@ class Page(models.Model):
     view_template = models.TextField(null=True)
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
+    reference_next_index = models.IntegerField(default=0)
 
 
 class Feature(models.Model):

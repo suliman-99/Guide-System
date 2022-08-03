@@ -10,7 +10,7 @@ class TaggedManager(models.Manager):
             content_type = int(content_type)
         except:
             content_type = ContentType.objects.get(model=content_type).id
-        return self.filter(content_type=content_type, object_id=object_id)
+        return self.filter(content_type=content_type, object_id=object_id).prefetch_related('tag')
 
 
 class Tag(models.Model):
