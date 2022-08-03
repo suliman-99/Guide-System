@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
+from rest_framework.filters import SearchFilter
 from .serializers import *
 
 
@@ -32,6 +33,8 @@ class ReplyViewSet(ModelViewSet):
 
 class ForumViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
+    filter_backends = [SearchFilter]
+    search_fields = ['title', 'content']
 
     queryset = Forum.objects.prefetch_related('replies')
 
