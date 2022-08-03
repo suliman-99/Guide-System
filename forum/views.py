@@ -1,7 +1,10 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework import status
 from rest_framework.filters import SearchFilter, OrderingFilter
+from django_filters.rest_framework import DjangoFilterBackend
+from forum.filters import ForumFilter
 from forum.pagination import PageNumberPagination10
 from .serializers import *
 
@@ -29,15 +32,17 @@ class ReplyViewSet(ModelViewSet):
             reply = Reply.objects.get(pk=pk)
             forum.closed_reply = reply
             forum.save()
-            return Response()
+            return Response(status=status.HTTP_202_ACCEPTED)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class ForumViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
     pagination_class = PageNumberPagination10
-    filter_backends = [SearchFilter, OrderingFilter]
+    filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
     search_fields = ['title', 'content']
     ordering_fields = ['time']
+    filterset_class = ForumFilter
 
     queryset = Forum.objects.all()
 
