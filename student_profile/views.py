@@ -5,15 +5,20 @@ from rest_framework.response import Response
 from .serializers import *
 
 
+def ensure_profile_pk(kwargs, key, value):
+    if kwargs.get(key) is not None and kwargs[key] == 'me':
+        kwargs[key] = value
+
+
 class ContactViewSet(ModelViewSet):
     serializer_class = ContactSerializer
 
     def get_queryset(self):
-        if self.kwargs['profile_pk'] == 'me':
-            self.kwargs['profile_pk'] = self.request.user.id
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         return Contact.objects.filter(profile_id=self.kwargs['profile_pk'])
 
     def get_serializer_context(self):
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
             return {'profile_id': self.kwargs['profile_pk']}
 
@@ -22,11 +27,11 @@ class MarkViewSet(ModelViewSet):
     serializer_class = MarkSerializer
 
     def get_queryset(self):
-        if self.kwargs['profile_pk'] == 'me':
-            self.kwargs['profile_pk'] = self.request.user.id
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         return Mark.objects.filter(profile_id=self.kwargs['profile_pk'])
 
     def get_serializer_context(self):
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
             return {'profile_id': self.kwargs['profile_pk']}
 
@@ -35,11 +40,11 @@ class ExperienceViewSet(ModelViewSet):
     serializer_class = ExperienceSerializer
 
     def get_queryset(self):
-        if self.kwargs['profile_pk'] == 'me':
-            self.kwargs['profile_pk'] = self.request.user.id
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         return Experience.objects.filter(profile_id=self.kwargs['profile_pk'])
 
     def get_serializer_context(self):
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
             return {'profile_id': self.kwargs['profile_pk']}
 
@@ -48,11 +53,11 @@ class ProjectViewSet(ModelViewSet):
     serializer_class = ProjectSerializer
 
     def get_queryset(self):
-        if self.kwargs['profile_pk'] == 'me':
-            self.kwargs['profile_pk'] = self.request.user.id
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         return Project.objects.filter(profile_id=self.kwargs['profile_pk'])
 
     def get_serializer_context(self):
+        ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
             return {'profile_id': self.kwargs['profile_pk']}
 
@@ -60,16 +65,8 @@ class ProjectViewSet(ModelViewSet):
 class ProfileViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
 
-    queryset = Profile.objects \
-        .select_related('user') \
-        .prefetch_related('contacts') \
-        .prefetch_related('marks') \
-        .prefetch_related('experiences') \
-        .prefetch_related('projects')
-
     def get_queryset(self):
-        if self.kwargs.get('pk', None) == 'me':
-            self.kwargs['pk'] = self.request.user.id
+        ensure_profile_pk(self.kwargs, 'pk', self.request.user.id)
         return Profile.objects \
             .select_related('user') \
             .prefetch_related('contacts') \

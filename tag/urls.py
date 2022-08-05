@@ -3,10 +3,21 @@ from rest_framework.routers import DefaultRouter
 from .views import *
 
 router = DefaultRouter()
-router.register('tags', TagViewSet, basename='tag')
-router.register('applied-tags', AppliedTagViewSet, basename='applied-tag')
-router.register('suggested-tags', SuggestedTagViewSet,
-                basename='suggested-tag')
+router.register(
+    'tags',
+    TagViewSet,
+    basename='tags'
+)
+router.register(
+    'applied-tags',
+    AppliedTagViewSet,
+    basename='applied-tags'
+)
+router.register(
+    'suggested-tags',
+    SuggestedTagViewSet,
+    basename='suggested-tags'
+)
 
 urlpatterns = router.urls + [
     path('applied-tags/content-type=<content_type>/object-id=<object_id>/',

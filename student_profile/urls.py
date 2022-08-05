@@ -2,7 +2,11 @@ from rest_framework_nested import routers
 from .views import *
 
 router = routers.DefaultRouter()
-router.register('profiles', ProfileViewSet)
+router.register(
+    'profiles',
+    ProfileViewSet,
+    basename='profiles'
+)
 
 profile_router = routers.NestedDefaultRouter(
     router,
