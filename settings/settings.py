@@ -62,8 +62,6 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'djoser',
-    'config',
-    'frontend',
     'debug_toolbar',
     'student_profile',
     'road_map',
