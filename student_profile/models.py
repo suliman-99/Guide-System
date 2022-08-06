@@ -26,6 +26,7 @@ class Profile(models.Model):
     birth_date = models.DateField()
     start_date = models.DateField()
     graduate_date = models.DateField(null=True)
+    points = models.IntegerField(default=0)
 
     def get_public_link(self, request):
         return request.build_absolute_uri('/api/student-profile/profiles/' + str(self.user.id))

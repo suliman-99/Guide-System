@@ -7,6 +7,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from forum.filters import ForumFilter
 from forum.pagination import PageNumberPagination10
 from .serializers import *
+from .signals import *
 
 
 class ReplyViewSet(ModelViewSet):
@@ -25,11 +26,21 @@ class ReplyViewSet(ModelViewSet):
             return CreateReplySerializer
         return ReplySerializer
 
-    @action(detail=True, methods=['GET'])
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.closed_forum is not None:
+            forum_close.send_robust(
+                self.__class__, old_reply=instance, new_reply=None)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    @action(detail=True, methods=['get', 'post', 'delete'])
     def close(self, request, forum_pk, pk):
-        forum = Forum.objects.get(pk=forum_pk)
-        if forum.user_id == request.user.id:
-            reply = Reply.objects.get(pk=pk)
+        reply = Reply.objects.get(pk=pk)
+        forum = reply.forum
+        if int(forum.user_id) == int(request.user.id) and int(forum.id) == int(forum_pk):
+            forum_close.send_robust(
+                self.__class__, old_reply=forum.closed_reply, new_reply=reply)
             forum.closed_reply = reply
             forum.save()
             return Response(status=status.HTTP_202_ACCEPTED)
@@ -53,3 +64,14 @@ class ForumViewSet(ModelViewSet):
         if self.request.method in ['POST', 'PATCH']:
             return CreateForumSerializer
         return ForumSerializer
+
+    @action(detail=True, methods=['get', 'post', 'delete'])
+    def un_close(self, request, pk):
+        forum = Forum.objects.get(pk=pk)
+        if int(forum.user_id) == int(request.user.id):
+            forum_close.send_robust(
+                self.__class__, old_reply=forum.closed_reply, new_reply=None)
+            forum.closed_reply = None
+            forum.save()
+            return Response(status=status.HTTP_202_ACCEPTED)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

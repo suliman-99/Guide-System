@@ -5,7 +5,7 @@ from .models import *
 class ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = Reply
-        fields = ['id', 'user_id', 'content', 'time']
+        fields = ['id', 'user_id', 'content', 'time', 'points']
 
 
 class CreateReplySerializer(serializers.ModelSerializer):
@@ -22,7 +22,7 @@ class CreateReplySerializer(serializers.ModelSerializer):
 class ForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
-        fields = ['id', 'user_id', 'title', 'content', 'is_question', 'time', 'is_closed',
+        fields = ['id', 'user_id', 'title', 'content', 'is_question', 'time', 'points', 'is_closed',
                   'closed_reply']
 
     is_closed = serializers.SerializerMethodField()

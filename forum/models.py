@@ -9,8 +9,9 @@ class Forum(models.Model):
     content = models.TextField()
     is_question = models.BooleanField()
     closed_reply = models.ForeignKey(
-        'Reply', on_delete=models.SET_NULL, null=True, related_name='+')
+        'Reply', on_delete=models.SET_NULL, null=True, related_name='closed_forum')
     time = models.DateTimeField(auto_now_add=True)
+    points = models.IntegerField(default=0)
 
 
 class Reply(models.Model):
@@ -20,3 +21,4 @@ class Reply(models.Model):
         Forum, on_delete=models.CASCADE, related_name='replies')
     content = models.TextField()
     time = models.DateTimeField(auto_now_add=True)
+    points = models.IntegerField(default=0)
