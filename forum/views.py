@@ -13,6 +13,8 @@ from .signals import *
 class ReplyViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'patch', 'delete']
     pagination_class = PageNumberPagination10
+    filter_backends = [OrderingFilter]
+    ordering_fields = ['time', 'points']
 
     def get_queryset(self):
         return Reply.objects.filter(forum_id=self.kwargs['forum_pk'])
@@ -52,7 +54,7 @@ class ForumViewSet(ModelViewSet):
     pagination_class = PageNumberPagination10
     filter_backends = [SearchFilter, OrderingFilter, DjangoFilterBackend]
     search_fields = ['title', 'content']
-    ordering_fields = ['time']
+    ordering_fields = ['time', 'points']
     filterset_class = ForumFilter
 
     queryset = Forum.objects.all()
