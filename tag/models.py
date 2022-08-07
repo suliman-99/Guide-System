@@ -17,17 +17,24 @@ class Tag(models.Model):
     name = models.CharField(max_length=255, unique=True)
     number_of_uses = models.PositiveIntegerField(default=0)
 
+    def __str__(self) -> str:
+        return self.name
+
 
 class AppliedTag(models.Model):
     objects = TaggedManager()
 
-    tag = models.ForeignKey(Tag, on_delete=models.PROTECT)
+    tag = models.ForeignKey(Tag, on_delete=models.PROTECT,
+                            related_name='applied_tags')
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
     contnet_object = GenericForeignKey()
 
     class Meta:
         unique_together = ['tag', 'content_type', 'object_id']
+        indexes = [
+            models.Index(fields=["content_type", "object_id"]),
+        ]
 
 
 class SuggestedTag(models.Model):
@@ -43,3 +50,6 @@ class SuggestedTag(models.Model):
 
     class Meta:
         unique_together = ['tag', 'content_type', 'object_id']
+        indexes = [
+            models.Index(fields=["content_type", "object_id"]),
+        ]

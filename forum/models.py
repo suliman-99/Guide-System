@@ -1,5 +1,7 @@
 from django.conf import settings
 from django.db import models
+from django.contrib.contenttypes.fields import GenericRelation
+from tag.models import *
 
 
 class Forum(models.Model):
@@ -12,6 +14,7 @@ class Forum(models.Model):
         'Reply', on_delete=models.SET_NULL, null=True, related_name='closed_forum')
     time = models.DateTimeField(auto_now_add=True)
     points = models.IntegerField(default=0)
+    applied_tags = GenericRelation(AppliedTag)
 
 
 class Reply(models.Model):

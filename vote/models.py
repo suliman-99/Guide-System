@@ -49,3 +49,6 @@ class VotedItem(models.Model):
 
     class Meta:
         unique_together = ['user', 'content_type', 'object_id']
+        indexes = [
+            models.Index(fields=["content_type", "object_id"]),
+        ]
