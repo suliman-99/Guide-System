@@ -7,7 +7,6 @@ from forum.models import *
 
 @receiver(vote)
 def on_vote(sender, **kwargs):
-    print('--------------on_vote-----------------')
     old_instance = kwargs['old_instance']
     new_instance = kwargs['new_instance']
     forum_content_type = ContentType.objects.get_for_model(Forum)
@@ -32,22 +31,16 @@ def on_vote(sender, **kwargs):
     points_diff = 0
     if old_instance:
         if old_instance.is_up:
-            print('there is old instance ------- up')
             points_diff -= 1
         else:
-            print('there is old instance ------- down')
             points_diff += 1
     if new_instance:
         if new_instance.is_up:
-            print('there is new instance ------- up')
             points_diff += 1
         else:
-            print('there is new instance ------- down')
             points_diff -= 1
-    print(points_diff)
     if points_diff:
         instance.points += points_diff
         instance.save()
         vote_effect.send_robust(Forum, instance=instance,
                                 points_diff=points_diff)
-    print(instance)

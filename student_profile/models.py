@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+import json
 
 
 def profile_photo_path(instance, filename):
@@ -68,3 +69,44 @@ class Project(models.Model):
     is_cerified = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
+
+
+class Feature(models.Model):
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE,  related_name='features')
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    start_date = models.DateField()
+    end_date = models.DateField(null=True)
+
+
+class ToolManager(models.Manager):
+    def get_profile_tools(self, profile):
+        tools = []
+        for project in profile.projects.all():
+            for feature in project.features.all():
+                for feature_tool in feature.feature_tools.all():
+                    if feature_tool.tool not in tools:
+                        tools.append(feature_tool.tool)
+        return tools
+
+    def get_project_tools(self, project):
+        tools = []
+        for feature in project.features.all():
+            for feature_tool in feature.feature_tools.all():
+                if feature_tool.tool not in tools:
+                    tools.append(feature_tool.tool)
+        return tools
+
+
+class Tool(models.Model):
+    objects = ToolManager()
+
+    title = models.CharField(max_length=255)
+
+
+class FeatureTool(models.Model):
+    feature = models.ForeignKey(
+        Feature, on_delete=models.CASCADE,  related_name='feature_tools')
+    tool = models.ForeignKey(
+        Tool, on_delete=models.CASCADE,  related_name='tool_features')

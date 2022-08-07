@@ -35,11 +35,104 @@ class ExperienceSerializer(serializers.ModelSerializer):
         return Experience.objects.create(profile_id=profile_id, **validated_data)
 
 
+# ---------------------------------------------------------------------------------------------
+
+
+class ProfileSmallFeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feature
+        fields = ['id', 'project', 'title', 'description',
+                  'start_date', 'end_date']
+
+
+class ProfileToolFeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeatureTool
+        fields = ['id', 'feature']
+
+    feature = ProfileSmallFeatureSerializer(read_only=True)
+
+
+class ProfileToolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tool
+        fields = ['id', 'title', 'tool_features']
+
+    tool_features = ProfileToolFeatureSerializer(many=True, read_only=True)
+
+
+# ----------------------------------------------------------------------------
+class ProjectSmallFeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feature
+        fields = ['id', 'title', 'description',
+                  'start_date', 'end_date']
+
+
+class ProjectToolFeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeatureTool
+        fields = ['id', 'feature']
+
+    feature = ProjectSmallFeatureSerializer(read_only=True)
+
+
+class ProjectToolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tool
+        fields = ['id', 'title', 'tool_features']
+
+    tool_features = ProjectToolFeatureSerializer(many=True, read_only=True)
+
+# ----------------------------------------------------------------------------
+
+
+class SmallToolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tool
+        fields = ['id', 'title']
+
+
+class FeatureToolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FeatureTool
+        fields = ['id', 'tool', 'tool_title']
+
+    tool = SmallToolSerializer(read_only=True)
+    tool_title = serializers.CharField(write_only=True)
+
+    def create(self, validated_data):
+        feature_id = self.context['feature_id']
+        (tool, _) = Tool.objects.get_or_create(
+            title=validated_data.pop('tool_title'))
+        return FeatureTool.objects.create(feature_id=feature_id, tool=tool, **validated_data)
+
+
+class FeatureSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Feature
+        fields = ['id', 'title', 'description',
+                  'start_date', 'end_date', 'feature_tools']
+
+    feature_tools = FeatureToolSerializer(many=True, read_only=True)
+
+    def create(self, validated_data):
+        project_id = self.context['project_id']
+        return Feature.objects.create(project_id=project_id, **validated_data)
+
+
+# ---------------------------------------------------------------------------------------------
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ['id', 'title', 'description', 'position',  'link',
-                  'is_cerified', 'start_date', 'end_date']
+                  'is_cerified', 'start_date', 'end_date', 'features', 'tools']
+
+    features = FeatureSerializer(many=True, read_only=True)
+    tools = serializers.SerializerMethodField()
+
+    def get_tools(self, project):
+        return ProjectToolSerializer(Tool.objects.get_project_tools(project), many=True).data
 
     def create(self, validated_data):
         profile_id = self.context['profile_id']
@@ -53,7 +146,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'gender', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'points', 'contacts', 'marks', 'experiences', 'projects']
+                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'points', 'contacts', 'marks', 'experiences', 'projects', 'tools']
 
     user_id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(source='user.username')
@@ -66,6 +159,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     projects = ProjectSerializer(many=True, read_only=True)
     is_graduated = serializers.SerializerMethodField()
     public_link = serializers.SerializerMethodField()
+    tools = serializers.SerializerMethodField()
+
+    def get_tools(self, profile):
+        return ProfileToolSerializer(Tool.objects.get_profile_tools(profile), many=True).data
 
     def get_is_graduated(self, profile):
         return profile.graduate_date is not None and profile.graduate_date < datetime.now()

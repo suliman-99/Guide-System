@@ -60,7 +60,6 @@ class ReferenceViewSet(ModelViewSet):
         return Reference.objects \
             .filter(parent_id=self.kwargs['page_pk']) \
             .select_related('child') \
-            .prefetch_related('features') \
             .prefetch_related('features__feature') \
             .order_by('index')
 
@@ -154,7 +153,9 @@ class ReferenceFeatureViewSet(ModelViewSet):
 
     def get_queryset(self):
         ensure_page_pk(self.kwargs, 'page_pk')
-        return ReferenceFeature.objects.filter(reference_id=self.kwargs['reference_pk'])
+        return ReferenceFeature.objects \
+            .filter(reference_id=self.kwargs['reference_pk']) \
+            .prefetch_related('feature')
 
     def get_serializer_context(self):
         if self.kwargs.get('reference_pk', None) is not None:
@@ -174,13 +175,9 @@ class PageViewSet(ModelViewSet):
             .prefetch_related('contents') \
             .prefetch_related('feedbacks') \
             .prefetch_related('features') \
-            .prefetch_related('dependency_children') \
             .prefetch_related('dependency_children__child') \
-            .prefetch_related('reference_children') \
             .prefetch_related('reference_children__child') \
-            .prefetch_related('reference_children__features') \
             .prefetch_related('reference_children__features__feature') \
-            .prefetch_related('finished_users') \
             .prefetch_related('finished_users__user')
 
     def get_serializer_class(self):

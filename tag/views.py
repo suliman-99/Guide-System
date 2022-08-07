@@ -13,14 +13,14 @@ class TagViewSet(ModelViewSet):
 
 
 class AppliedTagViewSet(ModelViewSet):
-    http_method_names = ['post', 'delete']
-    queryset = AppliedTag.objects.all()
+    http_method_names = ['get', 'post', 'delete']
+    queryset = AppliedTag.objects.select_related('tag')
     serializer_class = AppliedTagSerializer
 
 
 class SuggestedTagViewSet(ModelViewSet):
     http_method_names = ['get', 'post', 'delete']
-    queryset = SuggestedTag.objects.all()
+    queryset = SuggestedTag.objects.select_related('tag')
     serializer_class = SuggestedTagSerializer
 
     @action(detail=True, methods=['get', 'post', 'delete'])

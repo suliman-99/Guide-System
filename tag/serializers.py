@@ -11,32 +11,27 @@ class TagSerializer(serializers.ModelSerializer):
 class AppliedTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = AppliedTag
-        fields = ['id', 'tag_id', 'tag_name', 'tag_number_of_uses',
-                  'content_type', 'object_id']
+        fields = ['id', 'tag', 'tag_name', 'content_type', 'object_id']
 
-    tag_id = serializers.IntegerField(source='tag.id', read_only=True)
-    tag_name = serializers.CharField(max_length=255, source='tag.name')
-    tag_number_of_uses = serializers.IntegerField(
-        source='tag.number_of_uses', read_only=True)
+    tag = TagSerializer(read_only=True)
+    tag_name = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
         (tag, _) = Tag.objects.get_or_create(
-            name=validated_data.pop('tag')['name'])
+            name=validated_data.pop('tag_name'))
         return AppliedTag.objects.create(tag=tag, **validated_data)
 
 
 class SuggestedTagSerializer(serializers.ModelSerializer):
     class Meta:
         model = SuggestedTag
-        fields = ['id', 'tag_id', 'tag_name', 'tag_number_of_uses',
+        fields = ['id', 'tag', 'tag_name',
                   'content_type', 'object_id', 'is_add']
 
-    tag_id = serializers.IntegerField(source='tag.id', read_only=True)
-    tag_name = serializers.CharField(max_length=255, source='tag.name')
-    tag_number_of_uses = serializers.IntegerField(
-        source='tag.number_of_uses', read_only=True)
+    tag = TagSerializer(read_only=True)
+    tag_name = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
         (tag, _) = Tag.objects.get_or_create(
-            name=validated_data.pop('tag')['name'])
+            name=validated_data.pop('tag_name'))
         return SuggestedTag.objects.create(tag=tag, **validated_data)

@@ -57,7 +57,7 @@ class ForumViewSet(ModelViewSet):
     ordering_fields = ['time', 'points']
     filterset_class = ForumFilter
 
-    queryset = Forum.objects.all()
+    queryset = Forum.objects.select_related('closed_reply')
 
     def get_serializer_context(self):
         return {'user_id': self.request.user.id}

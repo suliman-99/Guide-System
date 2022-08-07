@@ -6,7 +6,7 @@ from .serializers import *
 
 
 class VotedItemViewSet(ModelViewSet):
-    http_method_names = ['post', 'patch', 'delete']
+    http_method_names = ['get', 'post', 'patch', 'delete']
     queryset = VotedItem.objects.all()
 
     def get_serializer_context(self):
