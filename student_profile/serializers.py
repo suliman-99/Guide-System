@@ -126,7 +126,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ['id', 'title', 'description', 'position',  'link',
-                  'is_cerified', 'start_date', 'end_date', 'features', 'tools']
+                  'is_certified', 'start_date', 'end_date', 'features', 'tools']
 
     features = FeatureSerializer(many=True, read_only=True)
     tools = serializers.SerializerMethodField()

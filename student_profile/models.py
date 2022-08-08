@@ -66,7 +66,7 @@ class Project(models.Model):
     description = models.TextField()
     position = models.CharField(max_length=255)
     link = models.URLField()
-    is_cerified = models.BooleanField(default=False)
+    is_certified = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
 
