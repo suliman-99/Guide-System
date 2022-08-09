@@ -122,21 +122,85 @@ class FeatureSerializer(serializers.ModelSerializer):
 
 
 # ---------------------------------------------------------------------------------------------
+
+class UpdateMembershipRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MembershipRequest
+        fields = ['position', 'is_admin']
+
+
+class UpdateMembershipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membership
+        fields = ['position', 'is_admin']
+
+
+class SmallProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['user_id', 'username', 'gender', 'photo']
+
+    username = serializers.CharField(source='user.username')
+
+
+class ProjectMembershipRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MembershipRequest
+        fields = ['id', 'position', 'is_admin',
+                  'time', 'profile_id', 'profile']
+
+    profile_id = serializers.IntegerField(write_only=True)
+    profile = SmallProfileSerializer(read_only=True)
+    time = serializers.DateTimeField(read_only=True)
+
+    def create(self, validated_data):
+        project_id = self.context['project_id']
+        return MembershipRequest.objects.create(project_id=project_id, **validated_data)
+
+
+class ProjectMembershipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membership
+        fields = ['id', 'position', 'is_admin',  'profile_id', 'profile']
+
+    profile_id = serializers.IntegerField(write_only=True)
+    profile = SmallProfileSerializer(read_only=True)
+
+
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ['id', 'title', 'description', 'position',  'link',
-                  'is_certified', 'start_date', 'end_date', 'features', 'tools']
+        fields = ['id', 'title', 'description',  'link', 'photo',
+                  'is_certified', 'start_date', 'end_date', 'memberships', 'features', 'tools']
 
     features = FeatureSerializer(many=True, read_only=True)
+    memberships = ProjectMembershipSerializer(many=True, read_only=True)
     tools = serializers.SerializerMethodField()
 
     def get_tools(self, project):
         return ProjectToolSerializer(Tool.objects.get_project_tools(project), many=True).data
 
+
+class ProfileMembershipRequestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MembershipRequest
+        fields = ['id', 'position', 'is_admin', 'time', 'project']
+
+    project = ProjectSerializer()
+
+
+class ProfileMembershipSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Membership
+        fields = ['id', 'position', 'is_admin', 'project']
+
+    project = ProjectSerializer()
+    is_admin = serializers.BooleanField(read_only=True)
+
     def create(self, validated_data):
         profile_id = self.context['profile_id']
-        return Project.objects.create(profile_id=profile_id, **validated_data)
+        project = Project.objects.create(**validated_data.pop('project'))
+        return Membership.objects.create(profile_id=profile_id, project=project, is_admin=True, **validated_data)
 
 
 # ---------------------------------------------------------------------------------
@@ -146,7 +210,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'gender', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'points', 'contacts', 'marks', 'experiences', 'projects', 'tools']
+                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'points', 'contacts', 'marks', 'experiences', 'memberships', 'tools']
 
     user_id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(source='user.username')
@@ -156,7 +220,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     contacts = ContactSerializer(many=True, read_only=True)
     marks = MarkSerializer(many=True, read_only=True)
     experiences = ExperienceSerializer(many=True, read_only=True)
-    projects = ProjectSerializer(many=True, read_only=True)
+    memberships = ProfileMembershipSerializer(many=True, read_only=True)
     is_graduated = serializers.SerializerMethodField()
     public_link = serializers.SerializerMethodField()
     tools = serializers.SerializerMethodField()

@@ -7,6 +7,10 @@ def profile_photo_path(instance, filename):
     return f'student_profile/profiles/{instance.user_id}/photos/{filename}'
 
 
+def project_photo_path(instance, filename):
+    return f'student_profile/projects/{instance.title}/photos/{filename}'
+
+
 class Profile(models.Model):
     GENDER_MALE = 'M'
     GENDER_FEMALE = 'F'
@@ -59,16 +63,25 @@ class Experience(models.Model):
     is_certified = models.BooleanField(default=False)
 
 
+class ProjectManager(models.Manager):
+    def get_profile_projects(self, profile):
+        projects = []
+        for membership in profile.memberships.all():
+            projects.append(membership.project)
+        return projects
+
+
 class Project(models.Model):
-    profile = models.ForeignKey(
-        Profile, on_delete=models.CASCADE,  related_name='projects')
+    objects = ProjectManager()
+
     title = models.CharField(max_length=255)
     description = models.TextField()
-    position = models.CharField(max_length=255)
     link = models.URLField()
     is_certified = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField(null=True)
+    photo = models.ImageField(
+        null=True, upload_to=project_photo_path)
 
 
 class Feature(models.Model):
@@ -83,8 +96,8 @@ class Feature(models.Model):
 class ToolManager(models.Manager):
     def get_profile_tools(self, profile):
         tools = []
-        for project in profile.projects.all():
-            for feature in project.features.all():
+        for membership in profile.memberships.all():
+            for feature in membership.project.features.all():
                 for feature_tool in feature.feature_tools.all():
                     if feature_tool.tool not in tools:
                         tools.append(feature_tool.tool)
@@ -110,3 +123,50 @@ class FeatureTool(models.Model):
         Feature, on_delete=models.CASCADE,  related_name='feature_tools')
     tool = models.ForeignKey(
         Tool, on_delete=models.CASCADE,  related_name='tool_features')
+
+
+class MembershipManager(models.Manager):
+    def create_or_update(self, profile, project, position, is_admin):
+        try:
+            membership = self.get(
+                profile=profile,
+                project=project
+            )
+            membership.position = position
+            membership.is_admin = is_admin
+            membership.save()
+            return membership
+        except:
+            return self.create(
+                project=project,
+                profile=profile,
+                position=position,
+                is_admin=is_admin
+            )
+
+
+class Membership(models.Model):
+    objects = MembershipManager()
+
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE,  related_name='memberships')
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE,  related_name='memberships')
+    position = models.CharField(max_length=255)
+    is_admin = models.BooleanField(default=False)
+
+    class Meta:
+        unique_together = ['profile', 'project']
+
+
+class MembershipRequest(models.Model):
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE,  related_name='membership_requests')
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE,  related_name='membership_requests')
+    position = models.CharField(max_length=255)
+    is_admin = models.BooleanField(default=False)
+    time = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ['profile', 'project']

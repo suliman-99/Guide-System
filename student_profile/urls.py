@@ -9,6 +9,12 @@ router.register(
     basename='profiles'
 )
 
+router.register(
+    'projects',
+    ProjectViewSet,
+    basename='projects'
+)
+
 # --------------------------------------------------------------------------
 
 profile_router = routers.NestedDefaultRouter(
@@ -34,9 +40,15 @@ profile_router.register(
 )
 
 profile_router.register(
-    'projects',
-    ProjectViewSet,
-    basename='profile-projects'
+    'memberships',
+    ProfileMembershipViewSet,
+    basename='profile-memberships'
+)
+
+profile_router.register(
+    'membership-requests',
+    ProfileMembershipRequestViewSet,
+    basename='profile-membership-requests'
 )
 
 profile_router.register(
@@ -49,9 +61,21 @@ profile_router.register(
 
 
 project_router = routers.NestedDefaultRouter(
-    profile_router,
+    router,
     'projects',
     lookup='project'
+)
+
+project_router.register(
+    'memberships',
+    ProjectMembershipViewSet,
+    basename='project-memberships'
+)
+
+project_router.register(
+    'membership-requests',
+    ProjectMembershipRequestViewSet,
+    basename='project-membership-requests'
 )
 
 project_router.register(

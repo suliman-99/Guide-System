@@ -1,1 +1,1 @@
-DELETE from project2.road_map_reference;
+DELETE from project2.student_profile_membership where id = 6;
