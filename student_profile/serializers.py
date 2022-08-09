@@ -229,7 +229,7 @@ class ProfileSerializer(serializers.ModelSerializer):
         return ProfileToolSerializer(Tool.objects.get_profile_tools(profile), many=True).data
 
     def get_is_graduated(self, profile):
-        return profile.graduate_date is not None and profile.graduate_date < datetime.now()
+        return profile.graduate_date is not None and profile.graduate_date < datetime.date(datetime.now())
 
     def get_public_link(self, profile):
         return profile.get_public_link(self.context['request'])
