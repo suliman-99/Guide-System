@@ -4,11 +4,11 @@ import json
 
 
 def profile_photo_path(instance, filename):
-    return f'student_profile/profiles/{instance.user_id}/photos/{filename}'
+    return f'student_profile/profiles/photos/{instance.username}_{filename}'
 
 
 def project_photo_path(instance, filename):
-    return f'student_profile/projects/{instance.title}/photos/{filename}'
+    return f'student_profile/projects/photos/{instance.title}_{filename}'
 
 
 class Profile(models.Model):

@@ -3,11 +3,11 @@ from django.conf import settings
 
 
 def page_background_path(instance, filename):
-    return f'road_map/pages/{instance.id}/backgrounds/{filename}'
+    return f'road_map/pages/backgrounds/{instance.title}_{filename}'
 
 
 def page_icon_path(instance, filename):
-    return f'road_map/pages/{instance.id}/icons/{filename}'
+    return f'road_map/pages/icons/{instance.title}_{filename}'
 
 
 class Page(models.Model):
