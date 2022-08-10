@@ -3,4 +3,4 @@ from .models import *
 
 models = (VotedItem)
 
-admin.site.register(models)
+# admin.site.register(models)

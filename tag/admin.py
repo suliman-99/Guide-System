@@ -3,4 +3,4 @@ from .models import *
 
 models = (Tag, SuggestedTag, AppliedTag)
 
-admin.site.register(models)
+# admin.site.register(models)

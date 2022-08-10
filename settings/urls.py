@@ -21,7 +21,12 @@ from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
 
 
-schema_view = get_schema_view(title="API Schema", description="Guide for the REST API")
+admin.site.site_header = 'Guid System Admin'
+admin.site.index_title = 'Main Page'
+
+
+schema_view = get_schema_view(
+    title="API Schema", description="Guide for the REST API")
 
 swagger_view = TemplateView.as_view(
     template_name="docs.html", extra_context={"schema_url": "api_schema"}
@@ -46,4 +51,4 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')),
     path('api/', include(app_patterns)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
-+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
