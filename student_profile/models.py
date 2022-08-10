@@ -4,7 +4,7 @@ import json
 
 
 def profile_photo_path(instance, filename):
-    return f'student_profile/profiles/photos/{instance.username}_{filename}'
+    return f'student_profile/profiles/photos/{instance.user.username}_{filename}'
 
 
 def project_photo_path(instance, filename):
