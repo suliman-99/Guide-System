@@ -174,6 +174,9 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
+    'DEFAULT_RENDERER_CLASSES': [
+        'config.renderers.BrowsableCamelCaseRenderer',
+    ],
 }
 
 
