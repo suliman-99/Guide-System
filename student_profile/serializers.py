@@ -209,8 +209,10 @@ class ProfileMembershipSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['user_id', 'username', 'email', 'first_name', 'last_name', 'gender', 'photo', 'address', 'services',
-                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'points', 'contacts', 'marks', 'experiences', 'memberships', 'tools']
+        fields = ['user_id', 'username', 'email', 'first_name', 'last_name',
+                  'gender', 'photo', 'address', 'services',
+                  'preferences', 'birth_date', 'is_graduated', 'start_date', 'graduate_date', 'public_link', 'points',
+                  'contacts', 'marks', 'experiences', 'memberships', 'tools']
 
     user_id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(source='user.username')

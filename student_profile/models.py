@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
-import json
+from django.utils.functional import cached_property
+from django.utils.html import format_html
 
 
 def profile_photo_path(instance, filename):
@@ -24,17 +25,28 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     photo = models.ImageField(
-        null=True, upload_to=profile_photo_path)
+        null=True, upload_to=profile_photo_path, blank=True)
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
-    birth_date = models.DateField()
+    birth_date = models.DateField(null=True, blank=True)
     start_date = models.DateField()
-    graduate_date = models.DateField(null=True)
+    graduate_date = models.DateField(null=True, blank=True)
     points = models.IntegerField(default=0)
 
     def get_public_link(self, request):
         return request.build_absolute_uri('/api/student-profile/profiles/' + str(self.user.id))
+
+    def __str__(self) -> str:
+        return self.user.username
+
+    @cached_property
+    def display_photo(self):
+        html = '<img src="{photo}" width=100 height=100 />'
+        if self.photo:
+            return format_html(html, photo=self.photo.url)
+        return format_html('<strong>There is no Photo for this entry.<strong>')
+    display_photo.short_description = 'Display Photo'
 
 
 class Contact(models.Model):
@@ -82,6 +94,17 @@ class Project(models.Model):
     end_date = models.DateField(null=True)
     photo = models.ImageField(
         null=True, upload_to=project_photo_path)
+
+    profiles = models.ManyToManyField(
+        Profile, through='Membership', related_name='projects')
+
+    @cached_property
+    def display_photo(self):
+        html = '<img src="{photo}" width=100 height=100 />'
+        if self.photo:
+            return format_html(html, photo=self.photo.url)
+        return format_html('<strong>There is no Photo for this entry.<strong>')
+    display_photo.short_description = 'Display Photo'
 
 
 class Feature(models.Model):
