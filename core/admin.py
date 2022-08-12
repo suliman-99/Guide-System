@@ -1,4 +1,3 @@
-from pickletools import read_unicodestring1
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.admin import GroupAdmin as BaseGroupAdmin
 from django.contrib.auth.models import Group as BaseGroup
@@ -7,17 +6,6 @@ from django.contrib import admin
 from django.http import HttpRequest
 from .models import User, Group
 from student_profile.models import Profile
-
-
-admin.site.unregister(BaseGroup)
-
-
-@admin.register(Group)
-class GroupAdmin(BaseGroupAdmin):
-    def get_queryset(self, request: HttpRequest):
-        if not request.user.is_superuser:
-            return super().get_queryset(request).filter(name='student')
-        return super().get_queryset(request)
 
 
 class ProfileInline(admin.StackedInline):
@@ -50,7 +38,7 @@ class UserAdmin(BaseUserAdmin):
                 (None, {
                  'fields': ("username", "password", "email", "first_name", "last_name")}),
                 (_('Permissions'), {
-                    'fields': ('is_active', 'groups'),
+                    'fields': ('is_active',),
                 }),
             )
         return super().get_fieldsets(request, obj)
@@ -81,3 +69,14 @@ class UserAdmin(BaseUserAdmin):
             except:
                 user.groups.remove(group)
         return super().save_formset(request, form, formset, change)
+
+
+admin.site.unregister(BaseGroup)
+
+
+@admin.register(Group)
+class GroupAdmin(BaseGroupAdmin):
+    def get_queryset(self, request: HttpRequest):
+        if not request.user.is_superuser:
+            return super().get_queryset(request).filter(name='student')
+        return super().get_queryset(request)
