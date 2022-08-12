@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.utils.functional import cached_property
+from django.utils.html import format_html
 
 
 def page_background_path(instance, filename):
@@ -31,6 +33,25 @@ class Page(models.Model):
     advice_and_tools = models.TextField()
     reference_next_index = models.IntegerField(default=0)
 
+    @cached_property
+    def display_background(self):
+        html = '<img src="{background}" width=100 height=100 />'
+        if self.background:
+            return format_html(html, background=self.background.url)
+        return format_html('<strong>There is no background for this entry.<strong>')
+    display_background.short_description = 'Display background'
+
+    @cached_property
+    def display_icon(self):
+        html = '<img src="{icon}" width=100 height=100 />'
+        if self.icon:
+            return format_html(html, icon=self.icon.url)
+        return format_html('<strong>There is no icon for this entry.<strong>')
+    display_icon.short_description = 'Display icon'
+
+    def __str__(self) -> str:
+        return self.title
+
 
 class Feature(models.Model):
     page = models.ForeignKey(
@@ -50,6 +71,9 @@ class Reference(models.Model):
 
     class Meta:
         unique_together = [['parent', 'child'], ['parent', 'index']]
+
+    def __str__(self) -> str:
+        return f'{self.parent} - {self.child}'
 
 
 class ReferenceFeature(models.Model):

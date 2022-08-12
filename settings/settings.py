@@ -176,6 +176,7 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'config.renderers.BrowsableCamelCaseRenderer',
+        'config.renderers.CamelCaseRenderer',
     ],
 }
 
@@ -197,5 +198,3 @@ DJOSER = {
         'current_user': 'core.serializers.UserSerializer',
     }
 }
-
-# from rest_framework.permissions import NOT , IsAdminUser

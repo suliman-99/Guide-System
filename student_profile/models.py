@@ -38,7 +38,10 @@ class Profile(models.Model):
         return request.build_absolute_uri('/api/student-profile/profiles/' + str(self.user.id))
 
     def __str__(self) -> str:
-        return self.user.username
+        try:
+            return self.user.username
+        except:
+            return 'No User'
 
     @cached_property
     def display_photo(self):

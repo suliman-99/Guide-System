@@ -4,7 +4,8 @@ from .models import *
 
 @admin.register(Page)
 class PageAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['id', 'title', 'type', 'display_background', 'display_icon', 'view_template',
+                    'importance_and_advantages', 'advice_and_tools']
 
 
 @admin.register(Dependency)
