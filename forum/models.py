@@ -11,7 +11,7 @@ class Forum(models.Model):
     content = models.TextField()
     is_question = models.BooleanField()
     closed_reply = models.ForeignKey(
-        'Reply', on_delete=models.SET_NULL, null=True, related_name='closed_forum')
+        'Reply', on_delete=models.SET_NULL, null=True, blank=True, related_name='closed_forum')
     time = models.DateTimeField(auto_now_add=True)
     points = models.IntegerField(default=0)
     applied_tags = GenericRelation(AppliedTag)

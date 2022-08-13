@@ -28,7 +28,7 @@ class Page(models.Model):
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     background = models.ImageField(upload_to=page_background_path)
     icon = models.ImageField(upload_to=page_icon_path)
-    view_template = models.TextField(null=True)
+    view_template = models.TextField(null=True,blank=True)
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
     reference_next_index = models.IntegerField(default=0)

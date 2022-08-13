@@ -8,63 +8,58 @@ from .models import *
 from django.utils.translation import gettext_lazy as _
 
 
+class MembershipInline(admin.TabularInline):
+    model = Membership
+    classes = ['collapse']
+    extra = 0
+
+
+class MarkInline(admin.TabularInline):
+    model = Mark
+    classes = ['collapse']
+    extra = 0
+
+
 class ExperienceInline(admin.StackedInline):
     model = Experience
-    extra = 0
     classes = ['collapse']
-    fieldsets = (
-                (None, {
-                 'fields': (
-                     ("name", "type"),
-                     "description",
-                     ("start_date", "end_date"),
-                     "is_certified"
-                 )
-                 }),
-    )
+    extra = 0
 
-    def get_fields(self, request: HttpRequest, obj):
-        return ('id', 'name', 'type', 'description', 'start_date', 'end_date', 'is_certified')
+    def get_fieldsets(self, request: HttpRequest, obj):
+        if request.user.is_superuser:
+            return (
+                (None, {
+                    'fields': (
+                        "name",
+                        "type",
+                        "description",
+                        "start_date",
+                        "end_date",
+                        "is_certified"
+                    )
+                }),
+            )
+        else:
+            return (
+                (None, {
+                    'fields': (
+                        ("name", "type", "description"),
+                        ("start_date", "end_date"),
+                        ("is_certified"),
+                    )
+                }),
+            )
+
+    def get_readonly_fields(self, request: HttpRequest, obj):
+        if request.user.is_superuser:
+            return []
+        else:
+            return ['name', 'type', 'description', 'start_date', 'end_date']
 
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 50})},
         models.CharField: {'widget': Textarea(attrs={'rows': 1, 'cols': 23})}
     }
-
-
-class MarkInline(admin.TabularInline):
-    model = Mark
-    extra = 0
-    classes = ['collapse']
-
-
-class MembershipInline(admin.TabularInline):
-    model = Membership
-    extra = 0
-    classes = ['collapse']
-
-
-@admin.register(Project)
-class ProjectAdmin(admin.ModelAdmin):
-
-    def get_inlines(self, request: HttpRequest, obj):
-        return (MembershipInline,)
-
-    def get_list_display(self, request: HttpRequest):
-        return ['id', 'title', 'description',  'link',  'display_photo',
-                'is_certified', 'start_date', 'end_date']
-
-    def get_list_display_links(self, request: HttpRequest, list_display):
-        return ['user_id', 'username']
-
-    def get_readonly_fields(self, request: HttpRequest, obj):
-        return ['title', 'description', 'link', 'display_photo', 'photo',
-                'start_date', 'end_date']
-
-    # def get_ordering(self, request: HttpRequest):
-    #     return ['user_id']
-
-    # list_editable = ['is_certified']
 
 
 class AddProfileForm(forms.ModelForm):
@@ -178,24 +173,91 @@ class ProfileAdmin(admin.ModelAdmin):
             }),
         )
 
+    # ----------------------------------------------------------------------
+
     @ admin.display(ordering='user__username')
     def username(self, profile):
         return profile.user.username
 
-    # list_editable = ['gender', 'birth_date', 'start_date', 'graduate_date']
+    @ admin.display(ordering='user__email')
+    def email(self, profile):
+        return profile.user.email
 
-    def get_list_display(self, request: HttpRequest):
-        return ['user_id', 'username', 'gender',
-                'birth_date', 'start_date', 'graduate_date']
+    @ admin.display(ordering='user__first_name')
+    def first_name(self, profile):
+        return profile.user.first_name
 
-    def get_list_display_links(self, request: HttpRequest, list_display):
-        return ['user_id', 'username']
+    @ admin.display(ordering='user__last_name')
+    def last_name(self, profile):
+        return profile.user.last_name
 
-    def get_ordering(self, request: HttpRequest):
-        return ['user_id']
+    list_display = ['user_id', 'username', 'email',
+                    'first_name', 'last_name', 'gender']
 
-    # def get_list_filter(self, request: HttpRequest):
-    #     return super().get_list_filter(request)
+    list_display_links = ['user_id', 'username']
 
-    # def get_search_fields(self, request: HttpRequest):
-    #     return super().get_search_fields(request)
+    ordering = ['user_id']
+
+    list_filter = ['gender', 'start_date', 'graduate_date']
+
+    search_fields = ['user__username', 'user__email',
+                     'user__first_name', 'user__last_name']
+
+
+@admin.register(Project)
+class ProjectAdmin(admin.ModelAdmin):
+
+    inlines = (MembershipInline,)
+
+    list_display = ['id', 'title', 'clickable_link',  'display_clickable_photo',
+                    'is_certified']
+
+    list_display_links = ['id', 'title']
+
+    list_editable = ['is_certified']
+
+    ordering = ['id']
+
+    list_filter = ['is_certified', 'start_date', 'end_date']
+
+    search_fields = ['title', 'description']
+
+    # ----------------------------------------------------------------------
+
+    def get_fieldsets(self, request: HttpRequest, obj):
+        if request.user.is_superuser:
+            return (
+                (None, {
+                    'fields': (
+                        "title",
+                        "description",
+                        "link",
+                        "clickable_link",
+                        "photo",
+                        "display_clickable_photo",
+                        "start_date",
+                        "end_date",
+                        "is_certified"
+                    )
+                }),
+            )
+        else:
+            return (
+                (None, {
+                    'fields': (
+                        "title",
+                        "description",
+                        "clickable_link",
+                        "display_clickable_photo",
+                        "start_date",
+                        "end_date",
+                        "is_certified"
+                    )
+                }),
+            )
+
+    def get_readonly_fields(self, request: HttpRequest, obj):
+        if request.user.is_superuser:
+            return ['clickable_link', 'display_clickable_photo']
+        else:
+            return ['title', 'description', 'start_date', 'end_date', 'clickable_link', 'display_clickable_photo']
