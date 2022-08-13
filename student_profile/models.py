@@ -29,7 +29,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
-    birth_date = models.DateField(null=True, blank=True)
+    birth_date = models.DateField()
     start_date = models.DateField()
     graduate_date = models.DateField(null=True, blank=True)
     points = models.IntegerField(default=0)
@@ -74,7 +74,7 @@ class Experience(models.Model):
     type = models.CharField(max_length=255)
     description = models.TextField()
     start_date = models.DateField()
-    end_date = models.DateField(null=True)
+    end_date = models.DateField(null=True, blank=True)
     is_certified = models.BooleanField(default=False)
 
 
