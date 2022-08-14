@@ -54,13 +54,9 @@ class UserAdmin(BaseUserAdmin):
         deleted_instances = formset.deleted_objects
         user = User.objects.get(username=form.cleaned_data['username'])
         group, _ = Group.objects.get_or_create(name='student')
-        print(added_instances)
-        print(deleted_instances)
         if len(added_instances) == 1 and isinstance(added_instances[0], Profile):
-            print('add the group')
             user.groups.add(group)
         elif len(deleted_instances) == 1 and isinstance(deleted_instances[0], Profile):
-            print('delete the group')
             user.groups.remove(group)
         else:
             try:

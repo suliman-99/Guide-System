@@ -1,11 +1,10 @@
-from django import forms
+
 from django.contrib import admin
-from django.forms import Textarea
 from django.http import HttpRequest
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
-from .models import *
 from django.utils.translation import gettext_lazy as _
+from .forms import *
 
 
 class MembershipInline(admin.TabularInline):
@@ -57,54 +56,10 @@ class ExperienceInline(admin.StackedInline):
             return ['name', 'type', 'description', 'start_date', 'end_date']
 
     formfield_overrides = {
-        models.TextField: {'widget': Textarea(attrs={'rows': 3, 'cols': 50})},
-        models.CharField: {'widget': Textarea(attrs={'rows': 1, 'cols': 23})}
+        models.TextField: {'widget': forms.Textarea(attrs={'rows': 3, 'cols': 50})},
+        models.CharField: {'widget': forms.Textarea(
+            attrs={'rows': 1, 'cols': 23})}
     }
-
-
-class AddProfileForm(forms.ModelForm):
-
-    username = forms.CharField()
-    email = forms.EmailField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
-
-    class Meta:
-        model = Profile
-        fields = ('username', 'password1', 'password2', 'email', 'first_name',
-                  'last_name', 'gender', 'birth_date', 'start_date', 'graduate_date')
-
-
-class ChangeProfileForm(forms.ModelForm):
-
-    class Meta:
-        model = Profile
-        fields = ('username', 'email', 'first_name', 'last_name', 'is_active',
-                  'gender', 'birth_date', 'start_date', 'graduate_date')
-
-    username = forms.CharField()
-    email = forms.EmailField()
-    first_name = forms.CharField()
-    last_name = forms.CharField()
-
-    is_active = forms.BooleanField()
-
-    def get_initial_for_field(self, field, field_name):
-        profile = self.instance
-        if field_name == 'username':
-            return profile.user.username
-        elif field_name == 'email':
-            return profile.user.email
-        elif field_name == 'first_name':
-            return profile.user.first_name
-        elif field_name == 'last_name':
-            return profile.user.last_name
-        elif field_name == 'is_active':
-            return profile.user.is_active
-        return super().get_initial_for_field(field, field_name)
 
 
 @admin.register(Profile)
@@ -153,6 +108,7 @@ class ProfileAdmin(admin.ModelAdmin):
             return (
                 (None, {
                  'fields': (
+                     "photo",
                      ("username", "email"),
                      ("first_name", "last_name"),
                      ("birth_date", "gender"),
@@ -191,7 +147,7 @@ class ProfileAdmin(admin.ModelAdmin):
     def last_name(self, profile):
         return profile.user.last_name
 
-    list_display = ['user_id', 'username', 'email',
+    list_display = ['user_id', 'username', 'display_clickable_photo',
                     'first_name', 'last_name', 'gender']
 
     list_display_links = ['user_id', 'username']

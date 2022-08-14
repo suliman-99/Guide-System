@@ -25,7 +25,7 @@ class FeedbackSerializer(serializers.ModelSerializer):
 class SmallPageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ['id', 'title', 'type', 'background', 'icon', 'view_template',
+        fields = ['id', 'title', 'type', 'background', 'icon',
                   'importance_and_advantages', 'advice_and_tools']
 
 
@@ -112,7 +112,7 @@ class CreateDependencySerializer(serializers.ModelSerializer):
 class PageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Page
-        fields = ['id', 'title', 'type', 'background', 'icon', 'view_template',
+        fields = ['id', 'title', 'type', 'background', 'icon',
                   'importance_and_advantages', 'advice_and_tools', 'is_finished', 'contents', 'feedbacks',  'features', 'dependency_children', 'reference_children']
 
     contents = ContentSerializer(many=True, read_only=True)

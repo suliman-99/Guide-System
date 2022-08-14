@@ -28,7 +28,6 @@ class Page(models.Model):
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     background = models.ImageField(upload_to=page_background_path)
     icon = models.ImageField(upload_to=page_icon_path)
-    view_template = models.TextField(null=True,blank=True)
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
     reference_next_index = models.IntegerField(default=0)
@@ -39,7 +38,7 @@ class Page(models.Model):
         if self.background:
             return format_html(html, background=self.background.url)
         return format_html('<strong>There is no background for this entry.<strong>')
-    display_background.short_description = 'Display background'
+    display_background.short_description = 'Background'
 
     @cached_property
     def display_icon(self):
@@ -47,7 +46,19 @@ class Page(models.Model):
         if self.icon:
             return format_html(html, icon=self.icon.url)
         return format_html('<strong>There is no icon for this entry.<strong>')
-    display_icon.short_description = 'Display icon'
+    display_icon.short_description = 'Icon'
+
+    @cached_property
+    def display_clickable_background_photo(self):
+        html = '<a href="{link}"><img src="{photo}" width=100 height=100 /></a>'
+        return format_html(html, link=self.background.url, photo=self.background.url)
+    display_clickable_background_photo.short_description = 'Background'
+
+    @cached_property
+    def display_clickable_icon_photo(self):
+        html = '<a href="{link}"><img src="{photo}" width=100 height=100 /></a>'
+        return format_html(html, link=self.icon.url, photo=self.icon.url)
+    display_clickable_icon_photo.short_description = 'Icon'
 
     def __str__(self) -> str:
         return self.title
@@ -70,10 +81,19 @@ class Reference(models.Model):
     index = models.PositiveIntegerField()
 
     class Meta:
-        unique_together = [['parent', 'child'], ['parent', 'index']]
+        unique_together = [['parent', 'child']]
 
     def __str__(self) -> str:
         return f'{self.parent} - {self.child}'
+
+    @classmethod
+    def ensure_page_references_order_unique_and_from_zero(self, page_id):
+        count = 0
+        for reference in self.objects.filter(parent_id=page_id).order_by('index'):
+            if reference.index != count:
+                reference.index = count
+                reference.save()
+            count += 1
 
 
 class ReferenceFeature(models.Model):
@@ -81,7 +101,7 @@ class ReferenceFeature(models.Model):
         Reference, on_delete=models.CASCADE, related_name='features')
     feature = models.ForeignKey(
         Feature, on_delete=models.CASCADE, related_name='references')
-    value = models.CharField(max_length=255)
+    value = models.CharField(max_length=255, null=True, blank=True)
 
     class Meta:
         unique_together = ['reference', 'feature']

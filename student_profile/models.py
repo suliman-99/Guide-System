@@ -49,7 +49,15 @@ class Profile(models.Model):
         if self.photo:
             return format_html(html, photo=self.photo.url)
         return format_html('<strong>There is no Photo for this entry.<strong>')
-    display_photo.short_description = 'Display Photo'
+    display_photo.short_description = 'Photo'
+
+    @cached_property
+    def display_clickable_photo(self):
+        html = '<a href="{link}"><img src="{photo}" width=100 height=100 /></a>'
+        if self.photo:
+            return format_html(html, link=self.photo.url, photo=self.photo.url)
+        return format_html('<strong> _ <strong>')
+    display_clickable_photo.short_description = 'Photo'
 
 
 class Contact(models.Model):
@@ -107,7 +115,7 @@ class Project(models.Model):
         if self.photo:
             return format_html(html, photo=self.photo.url)
         return format_html('<strong> _ <strong>')
-    display_photo.short_description = 'Display Photo'
+    display_photo.short_description = 'Photo'
 
     @cached_property
     def display_clickable_photo(self):
@@ -115,12 +123,12 @@ class Project(models.Model):
         if self.photo:
             return format_html(html, link=self.photo.url, photo=self.photo.url)
         return format_html('<strong> _ <strong>')
-    display_clickable_photo.short_description = 'Clickable Photo'
+    display_clickable_photo.short_description = 'Photo'
 
     @cached_property
     def clickable_link(self):
         return format_html('<a href="{link}">{link}</a>', link=self.link)
-    clickable_link.short_description = 'Clickable Link'
+    clickable_link.short_description = 'Link'
 
 
 class Feature(models.Model):

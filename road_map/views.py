@@ -2,6 +2,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from django.db.models import Prefetch
 from .serializers import *
 
 
@@ -171,13 +172,19 @@ class PageViewSet(ModelViewSet):
 
     def get_queryset(self):
         ensure_page_pk(self.kwargs, 'pk')
+        if self.kwargs.get('pk') is not None:
+            sorted_references = Reference.objects \
+                .filter(parent_id=self.kwargs.get('pk')) \
+                .select_related('child') \
+                .prefetch_related('features__feature') \
+                .order_by('index')
+        prefetch = Prefetch('reference_children', queryset=sorted_references)
         return Page.objects \
             .prefetch_related('contents') \
             .prefetch_related('feedbacks') \
             .prefetch_related('features') \
             .prefetch_related('dependency_children__child') \
-            .prefetch_related('reference_children__child') \
-            .prefetch_related('reference_children__features__feature') \
+            .prefetch_related(prefetch) \
             .prefetch_related('finished_users__user')
 
     def get_serializer_class(self):
