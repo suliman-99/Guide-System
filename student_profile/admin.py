@@ -97,7 +97,7 @@ class ProfileAdmin(admin.ModelAdmin):
                 )
                 user.set_password(data.pop('password1'))
                 user.save()
-                group, _ = Group.objects.get_or_create(name='student')
+                group, _ = Group.objects.get_or_create(name='students')
                 user.groups.add(group)
                 form.instance.user = user
                 form.instance.save()

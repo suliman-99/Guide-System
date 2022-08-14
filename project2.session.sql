@@ -1,1 +1,5 @@
-DELETE from project2.student_profile_membership where id = 6;
+
+
+
+
+DELETE from project2.core_user;
