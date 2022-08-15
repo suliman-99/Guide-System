@@ -1,4 +1,3 @@
-from uuid import uuid4
 from djoser.serializers import UserCreateSerializer as BaseUserCreateSerializer, UserSerializer as BaseUserSerializer
 from rest_framework import serializers
 
