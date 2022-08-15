@@ -20,6 +20,7 @@ django-rest-swagger = "*"
 django-nonrelated-inlines = "*"
 dj-database-url = "*"
 gunicorn = {git = "https://github.com/benoitc/gunicorn.git"}
+waitress = "*"
 
 [dev-packages]
 uritemplate = "*"

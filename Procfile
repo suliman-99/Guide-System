@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn settings.wsgi
+web: waitress-serve --listen=*:8000 myapp.wsgi:application
