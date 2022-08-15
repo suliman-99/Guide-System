@@ -1,4 +1,3 @@
-from turtle import update
 from rest_framework import serializers
 from .models import *
 from .signals import vote

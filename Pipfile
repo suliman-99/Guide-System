@@ -15,11 +15,21 @@ mysqlclient = "*"
 pillow = "*"
 drf-nested-routers = "*"
 typing-extensions = "*"
+django-filter = "*"
+django-rest-swagger = "*"
+django-nonrelated-inlines = "*"
+dj-database-url = "*"
+gunicorn = {git = "https://github.com/benoitc/gunicorn.git"}
+waitress = "*"
+psycopg2-binary = "*"
+whitenoise = "*"
+pyyaml = "*"
 
 [dev-packages]
 uritemplate = "*"
 django-rest-swagger = "*"
 autopep8 = "*"
+mypy = "*"
 
 [requires]
 python_version = "3.10"

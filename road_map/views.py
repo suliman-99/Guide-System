@@ -178,14 +178,23 @@ class PageViewSet(ModelViewSet):
                 .select_related('child') \
                 .prefetch_related('features__feature') \
                 .order_by('index')
-        prefetch = Prefetch('reference_children', queryset=sorted_references)
+            prefetch = Prefetch('reference_children', queryset=sorted_references)
+            return Page.objects \
+                .prefetch_related('contents') \
+                .prefetch_related('feedbacks') \
+                .prefetch_related('features') \
+                .prefetch_related('dependency_children__child') \
+                .prefetch_related(prefetch) \
+                .prefetch_related('finished_users__user')
         return Page.objects \
             .prefetch_related('contents') \
             .prefetch_related('feedbacks') \
             .prefetch_related('features') \
             .prefetch_related('dependency_children__child') \
-            .prefetch_related(prefetch) \
+            .prefetch_related('reference_children__child') \
+            .prefetch_related('reference_children__features__feature') \
             .prefetch_related('finished_users__user')
+            
 
     def get_serializer_class(self):
         if self.request.method in ['POST', 'PUT', 'PATCH']:
