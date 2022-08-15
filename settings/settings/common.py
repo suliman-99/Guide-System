@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -150,14 +149,6 @@ REST_FRAMEWORK = {
         'config.renderers.BrowsableCamelCaseRenderer',
         'config.renderers.CamelCaseRenderer',
     ],
-}
-
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT'),
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
-    'BLACKLIST_AFTER_ROTATION': False,
 }
 
 AUTH_USER_MODEL = 'core.User'
