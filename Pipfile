@@ -23,6 +23,7 @@ gunicorn = {git = "https://github.com/benoitc/gunicorn.git"}
 waitress = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
+pyyaml = "*"
 
 [dev-packages]
 uritemplate = "*"
