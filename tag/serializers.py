@@ -17,8 +17,11 @@ class AppliedTagSerializer(serializers.ModelSerializer):
     tag_name = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
-        (tag, _) = Tag.objects.get_or_create(
+        (tag, created) = Tag.objects.get_or_create(
             name=validated_data.pop('tag_name'))
+        if not created:
+            tag.number_of_uses += 1
+            tag.save()
         return AppliedTag.objects.create(tag=tag, **validated_data)
 
 
@@ -32,6 +35,9 @@ class SuggestedTagSerializer(serializers.ModelSerializer):
     tag_name = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
-        (tag, _) = Tag.objects.get_or_create(
+        (tag, created) = Tag.objects.get_or_create(
             name=validated_data.pop('tag_name'))
+        if not created:
+            tag.number_of_uses += 1
+            tag.save()
         return SuggestedTag.objects.create(tag=tag, **validated_data)
