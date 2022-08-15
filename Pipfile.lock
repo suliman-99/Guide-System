@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "797ea57e433c19c5bfd4ac94fef8595770979f8d4dbfa0003cdbc3e70a35af98"
+            "sha256": "fe24d13f7458eb2c64590a8e0cf7599a7770453c6c13f55a407a98c90da3b486"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -255,12 +255,12 @@
             "version": "==0.93.4"
         },
         "gunicorn": {
+            "git": "https://github.com/benoitc/gunicorn.git",
             "hashes": [
                 "sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e",
                 "sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8"
             ],
-            "index": "pypi",
-            "version": "==20.1.0"
+            "ref": "053e15c05c6f8a90c1850cc8cc2bad1bd2f3536a"
         },
         "idna": {
             "hashes": [
@@ -766,7 +766,7 @@
                 "sha256:2c9607871d58c76354b697b42f5d57e1ada7d261c261efac224b664affdc5785",
                 "sha256:d1735fc58b418fd7c5f658d28d943854f8a849b01a5d0a1e6f3f3fdd0166804b"
             ],
-            "markers": "python_full_version >= '3.6.0'",
+            "markers": "python_version >= '3.6'",
             "version": "==2.9.1"
         },
         "pytz": {

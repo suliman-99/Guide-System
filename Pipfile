@@ -19,7 +19,7 @@ django-filter = "*"
 django-rest-swagger = "*"
 django-nonrelated-inlines = "*"
 dj-database-url = "*"
-gunicorn = "*"
+gunicorn = {git = "https://github.com/benoitc/gunicorn.git"}
 
 [dev-packages]
 uritemplate = "*"
