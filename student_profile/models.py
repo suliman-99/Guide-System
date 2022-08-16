@@ -64,7 +64,7 @@ class Contact(models.Model):
     profile = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name='contacts')
     type = models.CharField(max_length=255)
-    link = models.URLField(max_length=255)
+    link = models.CharField(max_length=255)
 
 
 class Mark(models.Model):
