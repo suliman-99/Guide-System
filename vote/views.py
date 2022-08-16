@@ -19,10 +19,18 @@ class VotedItemViewSet(ModelViewSet):
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()
-        vote.send_robust(self.__class__, old_instance=instance,
-                         new_instance=None)
-        instance.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.user.id == instance.user.id:
+            vote.send_robust(self.__class__, old_instance=instance,
+                             new_instance=None)
+            instance.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+    def update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if request.user.id == instance.user.id:
+            return super().update(request, *args, **kwargs)
+        return Response(status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(['GET'])

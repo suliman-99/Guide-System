@@ -9,21 +9,16 @@ class ReplySerializer(serializers.ModelSerializer):
     class Meta:
         model = Reply
         fields = ['id', 'user_id', 'content',
-                  'time', 'points', 'vote_data', 'tags']
+                  'time', 'points', 'is_mine', 'vote_data']
 
+    is_mine = serializers.SerializerMethodField()
     vote_data = serializers.SerializerMethodField()
-    tags = serializers.SerializerMethodField()
+
+    def get_is_mine(self, forum):
+        return bool(self.context['user_id'] and forum.user.id == self.context['user_id'])
 
     def get_vote_data(self, reply):
         return VotedItem.objects.get_object_vote_data('reply', reply.id, self.context['user_id'])
-
-    def get_tags(self, reply):
-        return AppliedTagSerializer(AppliedTag.objects.get_object_tags(
-            'reply',
-            reply.id,
-        ),
-            many=True,
-        ).data
 
 
 class CreateReplySerializer(serializers.ModelSerializer):
@@ -41,15 +36,20 @@ class ForumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Forum
         fields = ['id', 'user_id', 'title', 'content', 'is_question', 'time', 'points', 'is_closed',
-                  'closed_reply', 'vote_data', 'tags']
+                  'closed_reply', 'is_mine', 'vote_data', 'tags', 'suggested_tags']
 
     closed_reply = ReplySerializer(read_only=True)
     is_closed = serializers.SerializerMethodField()
+    is_mine = serializers.SerializerMethodField()
     vote_data = serializers.SerializerMethodField()
     tags = serializers.SerializerMethodField()
+    suggested_tags = serializers.SerializerMethodField()
 
     def get_is_closed(self, forum):
         return forum.closed_reply is not None
+
+    def get_is_mine(self, forum):
+        return bool(self.context['user_id'] and self.context['user_id'] == forum.user.id)
 
     def get_vote_data(self, forum):
         return VotedItem.objects.get_object_vote_data('forum', forum.id, self.context['user_id'])
@@ -61,6 +61,16 @@ class ForumSerializer(serializers.ModelSerializer):
         ),
             many=True,
         ).data
+
+    def get_suggested_tags(self, forum):
+        if self.context['user_id'] and self.context['user_id'] == forum.user.id:
+            return AppliedTagSerializer(SuggestedTag.objects.get_object_tags(
+                'forum',
+                forum.id,
+            ),
+                many=True,
+            ).data
+        return {}
 
 
 class CreateForumSerializer(serializers.ModelSerializer):
