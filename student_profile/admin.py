@@ -182,21 +182,36 @@ class ProjectAdmin(admin.ModelAdmin):
 
     def get_fieldsets(self, request: HttpRequest, obj):
         if request.user.is_superuser:
-            return (
-                (None, {
-                    'fields': (
-                        "title",
-                        "description",
-                        "link",
-                        "clickable_link",
-                        "photo",
-                        "display_clickable_photo",
-                        "start_date",
-                        "end_date",
-                        "is_certified"
-                    )
-                }),
-            )
+            if obj:
+                return (
+                    (None, {
+                        'fields': (
+                            "title",
+                            "description",
+                            "link",
+                            "clickable_link",
+                            "photo",
+                            "display_clickable_photo",
+                            "start_date",
+                            "end_date",
+                            "is_certified"
+                        )
+                    }),
+                )
+            else:
+                return (
+                    (None, {
+                        'fields': (
+                            "title",
+                            "description",
+                            "link",
+                            "photo",
+                            "start_date",
+                            "end_date",
+                            "is_certified"
+                        )
+                    }),
+                )
         else:
             return (
                 (None, {
@@ -216,4 +231,4 @@ class ProjectAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return ['clickable_link', 'display_clickable_photo']
         else:
-            return ['title', 'description', 'start_date', 'end_date', 'clickable_link', 'display_clickable_photo']
+            return ['title', 'description', 'clickable_link', 'display_clickable_photo', 'start_date', 'end_date']

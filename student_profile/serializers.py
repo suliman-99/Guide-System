@@ -258,12 +258,15 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
     last_name = serializers.CharField(source='user.last_name')
 
     def update(self, instance, validated_data):
-        data = validated_data.pop('user')
-        user = instance.user
-        user.username = data.get('username', user.username)
-        user.first_name = data.get('first_name', user.first_name)
-        user.last_name = data.get('last_name', user.last_name)
-        user.email = data.get('email', user.email)
-        user.save()
-        instance.user = user
+        try:
+            data = validated_data.pop('user')
+            user = instance.user
+            user.username = data.get('username', user.username)
+            user.first_name = data.get('first_name', user.first_name)
+            user.last_name = data.get('last_name', user.last_name)
+            user.email = data.get('email', user.email)
+            user.save()
+            instance.user = user
+        except:
+            pass
         return super().update(instance, validated_data)
