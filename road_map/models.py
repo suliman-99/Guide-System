@@ -26,8 +26,8 @@ class Page(models.Model):
 
     title = models.CharField(max_length=255, unique=True)
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    background = models.ImageField(upload_to=page_background_path)
-    icon = models.ImageField(upload_to=page_icon_path)
+    background = models.ImageField(upload_to=page_background_path, max_length=500)
+    icon = models.ImageField(upload_to=page_icon_path, max_length=500)
     importance_and_advantages = models.TextField()
     advice_and_tools = models.TextField()
     reference_next_index = models.IntegerField(default=0)

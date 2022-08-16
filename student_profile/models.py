@@ -25,7 +25,7 @@ class Profile(models.Model):
         settings.AUTH_USER_MODEL, primary_key=True, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     photo = models.ImageField(
-        null=True, blank=True, upload_to=profile_photo_path)
+        null=True, blank=True, upload_to=profile_photo_path, max_length=500)
     address = models.CharField(max_length=255)
     services = models.TextField()
     preferences = models.TextField()
@@ -104,7 +104,7 @@ class Project(models.Model):
     start_date = models.DateField()
     end_date = models.DateField(null=True, blank=True)
     photo = models.ImageField(
-        null=True, blank=True, upload_to=project_photo_path)
+        null=True, blank=True, upload_to=project_photo_path, max_length=500)
 
     profiles = models.ManyToManyField(
         Profile, through='Membership', related_name='projects')

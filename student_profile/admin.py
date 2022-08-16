@@ -65,8 +65,10 @@ class ExperienceInline(admin.StackedInline):
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
 
-    def get_form(self, request, obj, **kwargs):
+    def get_form(self, request, obj, change, **kwargs):
         if obj:
+            if request.user.is_superuser:
+                return SuperuserChangeProfileForm
             return ChangeProfileForm
         return AddProfileForm
 
@@ -78,7 +80,6 @@ class ProfileAdmin(admin.ModelAdmin):
     def save_form(self, request, form, change):
         data = form.cleaned_data
         if change:
-            is_active = data.pop('is_active')
             user = form.instance.user
             user.username = data.pop('username', user.username)
             user.email = data.pop('email', user.email)
@@ -105,10 +106,24 @@ class ProfileAdmin(admin.ModelAdmin):
 
     def get_fieldsets(self, request: HttpRequest, obj):
         if obj:
+            if request.user.is_superuser:
+                return (
+                    (None, {
+                        'fields': (
+                            "clickable_photo",
+                            "photo",
+                            ("username", "email"),
+                            ("first_name", "last_name"),
+                            ("birth_date", "gender"),
+                            ("start_date", "graduate_date"),
+                            "is_active"
+                        )
+                    }),
+                )
             return (
                 (None, {
                  'fields': (
-                     "photo",
+                     "clickable_photo",
                      ("username", "email"),
                      ("first_name", "last_name"),
                      ("birth_date", "gender"),
@@ -189,9 +204,8 @@ class ProjectAdmin(admin.ModelAdmin):
                             "title",
                             "description",
                             "link",
-                            "clickable_link",
-                            "photo",
                             "display_clickable_photo",
+                            "photo",
                             "start_date",
                             "end_date",
                             "is_certified"
