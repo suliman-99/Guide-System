@@ -15,7 +15,7 @@ class TaggedManager(models.Manager):
 
 class Tag(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    number_of_uses = models.PositiveIntegerField(default=0)
+    number_of_uses = models.PositiveIntegerField(default=1)
 
     def __str__(self) -> str:
         return self.name
