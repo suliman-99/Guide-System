@@ -30,6 +30,8 @@ class ExperienceSerializer(serializers.ModelSerializer):
         fields = ['id', 'name', 'type', 'description',
                   'start_date', 'end_date', 'is_certified']
 
+    is_certified = serializers.BooleanField(read_only=True)
+
     def create(self, validated_data):
         profile_id = self.context['profile_id']
         return Experience.objects.create(profile_id=profile_id, **validated_data)
@@ -173,6 +175,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = ['id', 'title', 'description',  'link', 'photo',
                   'is_certified', 'start_date', 'end_date', 'memberships', 'features', 'tools']
 
+    is_certified = serializers.BooleanField(read_only=True)
     features = FeatureSerializer(many=True, read_only=True)
     memberships = ProjectMembershipSerializer(many=True, read_only=True)
     tools = serializers.SerializerMethodField()
