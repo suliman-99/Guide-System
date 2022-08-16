@@ -14,13 +14,6 @@ admin.site.unregister(BaseGroup)
 admin.site.register(Group, BaseGroupAdmin)
 
 
-class ProfileInline(admin.StackedInline):
-    model = Profile
-    min_num = 0
-    max_num = 1
-    fields = ['gender', 'birth_date', 'start_date', 'graduate_date']
-
-
 @admin.register(User)
 class UserAdmin(BaseUserAdmin):
 
