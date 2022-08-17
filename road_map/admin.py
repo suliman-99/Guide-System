@@ -165,5 +165,4 @@ class PageAdmin(admin.ModelAdmin):
 
     list_filter = ['type']
 
-    search_fields = ['title', 'type',
-                     'importance_and_advantages', 'advice_and_tools']
+    search_fields = ['title']

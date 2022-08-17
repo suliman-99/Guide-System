@@ -7,6 +7,8 @@ DEBUG = True
 
 SECRET_KEY = config('SECRET_KEY')
 
+ALLOWED_HOSTS = ['*']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
