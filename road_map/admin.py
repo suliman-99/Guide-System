@@ -55,6 +55,7 @@ class ReferenceFeatureInline(NonrelatedTabularInline):
     extra = 0
     fields = ['reference_child', 'feature_name', 'value']
     readonly_fields = ['reference_child', 'feature_name']
+    ordering = ['reference__child__id', 'feature__name']
 
     def reference_child(self, reference_feature):
         return reference_feature.reference.child
@@ -68,7 +69,7 @@ class ReferenceFeatureInline(NonrelatedTabularInline):
             .select_related('reference__parent') \
             .select_related('reference__child') \
             .filter(feature__page=obj) \
-            .order_by('reference__child')
+            .order_by('reference__child__id', 'feature__name')
 
     def save_new_instance(self, parent, instance):
         pass
