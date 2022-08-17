@@ -24,6 +24,8 @@ waitress = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
 pyyaml = "*"
+django-admin-interface = "*"
+django-colorfield = "*"
 
 [dev-packages]
 uritemplate = "*"

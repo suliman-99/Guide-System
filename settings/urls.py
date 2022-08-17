@@ -21,7 +21,7 @@ from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
 
 
-admin.site.site_header = 'Guid System Admin'
+admin.site.site_header = 'Guide System Admin'
 admin.site.index_title = 'Main Page'
 
 
