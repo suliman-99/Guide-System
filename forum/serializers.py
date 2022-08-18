@@ -5,6 +5,7 @@ from vote.models import VotedItem
 from student_profile.serializers import SmallProfileSerializer
 from student_profile.models import Profile
 from .models import *
+from settings.settings.common import MEDIA_ROOT, MEDIA_URL, BASE_DIR
 
 
 class ReplySerializer(serializers.ModelSerializer):
@@ -27,13 +28,21 @@ class ReplySerializer(serializers.ModelSerializer):
         profiles = Profile.objects.filter(user_id=reply.user.id)
         if profiles:
             profile = profiles[0]
+            photo = self.context['request'].build_absolute_uri(
+                '/').strip('/') + profile.photo.url
+            return {
+                'user_id': profile.user.id,
+                'username': profile.user.username,
+                'gender': profile.gender,
+                'photo': photo,
+            }
         else:
-            profile = Profile(
-                user_id=reply.user.id,
-                gender=Profile.GENDER_MALE,
-                photo=''
-            )
-        return SmallProfileSerializer(profile).data
+            return {
+                'user_id': reply.user.id,
+                'username': reply.user.username,
+                'gender': reply.gender,
+                'photo': '',
+            }
 
 
 class CreateReplySerializer(serializers.ModelSerializer):
@@ -88,17 +97,25 @@ class ForumSerializer(serializers.ModelSerializer):
             ).data
         return {}
 
-    def get_profile(self, reply):
-        profiles = Profile.objects.filter(user_id=reply.user.id)
+    def get_profile(self, forum):
+        profiles = Profile.objects.filter(user_id=forum.user.id)
         if profiles:
             profile = profiles[0]
+            photo = self.context['request'].build_absolute_uri(
+                '/').strip('/') + profile.photo.url
+            return {
+                'user_id': profile.user.id,
+                'username': profile.user.username,
+                'gender': profile.gender,
+                'photo': photo,
+            }
         else:
-            profile = Profile(
-                user_id=reply.user.id,
-                gender=Profile.GENDER_MALE,
-                photo=''
-            )
-        return SmallProfileSerializer(profile).data
+            return {
+                'user_id': forum.user.id,
+                'username': forum.user.username,
+                'gender': 'M',
+                'photo': '',
+            }
 
 
 class CreateForumSerializer(serializers.ModelSerializer):

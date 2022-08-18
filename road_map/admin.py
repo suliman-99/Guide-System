@@ -131,9 +131,6 @@ class PageAdmin(admin.ModelAdmin):
         added_instances = formset.save(commit=True)
         deleted_instances = formset.deleted_objects
         formset.save()
-        print(added_instances)
-        print(change)
-
         if added_instances:
             if isinstance(added_instances[0], Feature):
                 references = Reference.objects.filter(
