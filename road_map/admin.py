@@ -41,6 +41,7 @@ class ReferenceInline(admin.TabularInline):
     extra = 0
     fk_name = 'parent'
     autocomplete_fields = ['child']
+    show_change_link = True
 
 
 class FeatureInline(admin.TabularInline):

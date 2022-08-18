@@ -21,7 +21,7 @@ class ReplyViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         if self.kwargs.get('forum_pk', None) is not None:
-            return {'user_id': self.request.user.id, 'forum_id': self.kwargs['forum_pk']}
+            return {'user_id': self.request.user.id, 'forum_id': self.kwargs['forum_pk'], 'request': self.request}
 
     def get_serializer_class(self):
         if self.request.method in ['POST', 'PATCH']:
@@ -60,7 +60,7 @@ class ForumViewSet(ModelViewSet):
     queryset = Forum.objects.select_related('closed_reply')
 
     def get_serializer_context(self):
-        return {'user_id': self.request.user.id}
+        return {'user_id': self.request.user.id, 'request': self.request}
 
     def get_serializer_class(self):
         if self.request.method in ['POST', 'PATCH']:

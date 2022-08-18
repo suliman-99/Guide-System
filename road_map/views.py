@@ -22,7 +22,7 @@ class ContentViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_page_pk(self.kwargs, 'page_pk')
         if self.kwargs.get('page_pk', None) is not None:
-            return {'page_id': self.kwargs['page_pk']}
+            return {'page_id': self.kwargs['page_pk'], 'request': self.request}
 
 
 class FeedbackViewSet(ModelViewSet):
@@ -36,7 +36,7 @@ class FeedbackViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_page_pk(self.kwargs, 'page_pk')
         if self.kwargs.get('page_pk', None) is not None:
-            return {'page_id': self.kwargs['page_pk']}
+            return {'page_id': self.kwargs['page_pk'], 'request': self.request}
 
 
 class FeatureViewSet(ModelViewSet):
@@ -50,7 +50,7 @@ class FeatureViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_page_pk(self.kwargs, 'page_pk')
         if self.kwargs.get('page_pk', None) is not None:
-            return {'page_id': self.kwargs['page_pk']}
+            return {'page_id': self.kwargs['page_pk'], 'request': self.request}
 
 
 class ReferenceViewSet(ModelViewSet):
@@ -67,7 +67,7 @@ class ReferenceViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_page_pk(self.kwargs, 'page_pk')
         if self.kwargs.get('page_pk', None) is not None:
-            return {'page_id': self.kwargs['page_pk']}
+            return {'page_id': self.kwargs['page_pk'], 'request': self.request}
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -141,7 +141,7 @@ class DependencyViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_page_pk(self.kwargs, 'page_pk')
         if self.kwargs.get('page_pk', None) is not None:
-            return {'page_id': self.kwargs['page_pk']}
+            return {'page_id': self.kwargs['page_pk'], 'request': self.request}
 
     def get_serializer_class(self):
         if self.request.method == 'POST':
@@ -160,7 +160,7 @@ class ReferenceFeatureViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         if self.kwargs.get('reference_pk', None) is not None:
-            return {'reference_id': self.kwargs['reference_pk']}
+            return {'reference_id': self.kwargs['reference_pk'], 'request': self.request}
 
     def get_serializer_class(self):
         if self.request.method in ['PATCH']:
@@ -178,7 +178,8 @@ class PageViewSet(ModelViewSet):
                 .select_related('child') \
                 .prefetch_related('features__feature') \
                 .order_by('index')
-            prefetch = Prefetch('reference_children', queryset=sorted_references)
+            prefetch = Prefetch('reference_children',
+                                queryset=sorted_references)
             return Page.objects \
                 .prefetch_related('contents') \
                 .prefetch_related('feedbacks') \
@@ -194,7 +195,6 @@ class PageViewSet(ModelViewSet):
             .prefetch_related('reference_children__child') \
             .prefetch_related('reference_children__features__feature') \
             .prefetch_related('finished_users__user')
-            
 
     def get_serializer_class(self):
         if self.request.method in ['POST', 'PUT', 'PATCH']:
@@ -202,7 +202,7 @@ class PageViewSet(ModelViewSet):
         return PageSerializer
 
     def get_serializer_context(self):
-        return {'user_id': self.request.user.id}
+        return {'user_id': self.request.user.id, 'request': self.request}
 
     def destroy(self, request, *args, **kwargs):
         ensure_page_pk(self.kwargs, 'pk')

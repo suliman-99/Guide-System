@@ -10,7 +10,7 @@ class VotedItemViewSet(ModelViewSet):
     queryset = VotedItem.objects.all()
 
     def get_serializer_context(self):
-        return {'user_id': self.request.user.id}
+        return {'user_id': self.request.user.id, 'request': self.request}
 
     def get_serializer_class(self):
         if self.request.method == 'PATCH':

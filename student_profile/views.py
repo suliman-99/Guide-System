@@ -21,7 +21,7 @@ class ContactViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
-            return {'profile_id': self.kwargs['profile_pk']}
+            return {'profile_id': self.kwargs['profile_pk'], 'request': self.request}
 
 
 class MarkViewSet(ModelViewSet):
@@ -34,7 +34,7 @@ class MarkViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
-            return {'profile_id': self.kwargs['profile_pk']}
+            return {'profile_id': self.kwargs['profile_pk'], 'request': self.request}
 
 
 class ExperienceViewSet(ModelViewSet):
@@ -47,7 +47,7 @@ class ExperienceViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
-            return {'profile_id': self.kwargs['profile_pk']}
+            return {'profile_id': self.kwargs['profile_pk'], 'request': self.request}
 
 
 class ProfileToolViewSet(ModelViewSet):
@@ -102,7 +102,7 @@ class FeatureToolViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         if self.kwargs.get('feature_pk', None) is not None:
-            return {'feature_id': self.kwargs['feature_pk']}
+            return {'feature_id': self.kwargs['feature_pk'], 'request': self.request}
 
 
 class FeatureViewSet(ModelViewSet):
@@ -115,7 +115,7 @@ class FeatureViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         if self.kwargs.get('project_pk', None) is not None:
-            return {'project_id': self.kwargs['project_pk']}
+            return {'project_id': self.kwargs['project_pk'], 'request': self.request}
 
 
 class ProjectMembershipRequestViewSet(ModelViewSet):
@@ -133,7 +133,7 @@ class ProjectMembershipRequestViewSet(ModelViewSet):
 
     def get_serializer_context(self):
         if self.kwargs.get('project_pk', None) is not None:
-            return {'project_id': self.kwargs['project_pk']}
+            return {'project_id': self.kwargs['project_pk'], 'request': self.request}
 
 
 class ProjectMembershipViewSet(ModelViewSet):
@@ -172,7 +172,7 @@ class ProfileMembershipRequestViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
-            return {'profile_id': self.kwargs['profile_pk']}
+            return {'profile_id': self.kwargs['profile_pk'], 'request': self.request}
 
     @action(detail=True, methods=['get', 'delete'])
     def accept(self, request, profile_pk, pk):
@@ -215,7 +215,7 @@ class ProfileMembershipViewSet(ModelViewSet):
     def get_serializer_context(self):
         ensure_profile_pk(self.kwargs, 'profile_pk', self.request.user.id)
         if self.kwargs.get('profile_pk', None) is not None:
-            return {'profile_id': self.kwargs['profile_pk']}
+            return {'profile_id': self.kwargs['profile_pk'], 'request': self.request}
 
 
 class ProfileViewSet(ModelViewSet):
